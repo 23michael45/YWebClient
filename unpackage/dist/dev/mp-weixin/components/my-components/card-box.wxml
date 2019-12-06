@@ -1,0 +1,1 @@
+<view class="card-box data-v-4ebc1636"><block wx:if="{{title}}"><view class="box-title data-v-4ebc1636"><slot name="title"></slot><text data-event-opts="{{[['tap',[['del',['$event']]]]]}}" class="delete text-gray cuIcon-delete data-v-4ebc1636" bindtap="__e"></text></view></block><view class="content data-v-4ebc1636"><slot name="content"></slot></view></view>

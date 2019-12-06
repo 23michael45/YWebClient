@@ -1,0 +1,10 @@
+{
+  "navigationBarTitleText": "",
+  "usingComponents": {
+    "preview-one": "/components/my-components/img_preview/preview_01",
+    "preview-two": "/components/my-components/img_preview/preview-02",
+    "preview-three": "/components/my-components/img_preview/preview-03",
+    "preview-four": "/components/my-components/img_preview/preview-04",
+    "preview-five": "/components/my-components/img_preview/preview-05"
+  }
+}

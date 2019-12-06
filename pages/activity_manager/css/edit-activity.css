@@ -1,0 +1,193 @@
+.top-bar {
+	height: 100upx;
+	background: #fff;
+	display: flex;
+	justify-content: space-around;
+	align-items: center;
+	font-size: 32upx;
+}
+
+.bar-item {}
+
+.card-box {
+	padding: 30upx 20upx;
+}
+
+/* my-card */
+.my-card {
+	width: 100%;
+	height: 356upx;
+	background: #fff;
+	border-radius: 10upx;
+	overflow: hidden;
+	position: relative;
+}
+
+.my-card .title {
+	position: absolute;
+	width: 100%;
+	height: 80upx;
+	line-height: 80upx;
+	background: rgba(0, 0, 0, .3);
+	text-align: center;
+	color: #fff;
+	font-size: 30upx;
+	z-index: 98
+}
+
+.title {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+
+.my-card .title input {
+	height: 40upx;
+	min-height: 40upx;
+	line-height: 40upx;
+}
+
+.my-card .logo {
+	position: absolute;
+	top: 10upx;
+	left: 10upx;
+	width: 60upx;
+	height: 60upx;
+	z-index: 99;
+}
+
+.my-card .logo image {
+	width: 100%;
+	height: 100%;
+}
+
+.my-card .upload-logo {
+	width: 60upx;
+	height: 60upx;
+	line-height: 60upx;
+	font-size: 18upx;
+	text-align: center;
+	background: #626262;
+	color: #fff;
+}
+
+.my-card .mode {
+	position: absolute;
+	top: 0;
+	right: 30upx;
+	width: 40upx;
+	height: 80upx;
+	z-index: 99
+}
+
+.my-card .mode image {
+	width: 100%;
+	height: 100%;
+}
+
+.my-card .bgc {
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+}
+
+.my-card .bgc image {
+	width: 100%;
+	height: 100%;
+}
+
+.my-card .bgc .bgcTip {
+	position: absolute;
+	top: 45%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+}
+
+.my-card .bgc .bgcTip text {
+	font-size: 70upx;
+}
+
+.my-card .bgc .bgcTip .tip-text {
+	font-size: 26upx;
+}
+
+.my-card .bottom {
+	position: absolute;
+	bottom: 0;
+	width: 100%;
+	height: 70upx;
+	background: rgba(0, 0, 0, .3);
+	display: flex;
+	justify-content: space-around;
+	align-items: center;
+	z-index: 99;
+}
+
+.my-card .bottom .bottom-item {
+	width: 40upx;
+	height: 40upx;
+}
+
+.my-card .bottom .bottom-item image {
+	width: 100%;
+	height: 100%;
+}
+
+/* my-card */
+
+.btn-box {
+	position: absolute;
+	top: 700upx;
+	left: 50%;
+	transform: translateX(-50%);
+	width: 300upx;
+	height: 130upx;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: space-between;
+}
+
+.btn-box .tips {
+	font-size: 22upx;
+	color: #666;
+}
+
+.btn-box .btn {
+	width: 100%;
+	height: 80upx;
+	line-height: 80upx;
+	text-align: center;
+	color: #fff;
+	font-size: 32upx;
+	background: #606060;
+	border-radius: 10upx;
+}
+
+.boms {
+	width: 100%;
+	height: 78upx;
+	background-color: #1B191A;
+	display: flex;
+	position: fixed;
+	bottom: 0;
+}
+
+.boms view:nth-of-type(1) {
+	border-right: 1upx solid #FFFFFF;
+}
+
+.boms view {
+	width: 50%;
+	height: 100%;
+	color: #FFFFFF;
+	font-weight: 400;
+	font-size: 27upx;
+	text-align: center;
+	line-height: 78upx;
+}

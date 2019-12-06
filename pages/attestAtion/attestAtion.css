@@ -1,0 +1,110 @@
+
+.headers {
+	font-size: 42upx;
+	margin-top: 26upx;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+
+.headerss {
+	font-size: 26upx;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	color: rgb(137, 137, 137);
+	margin-bottom: 10upx;
+	height: 80rpx;
+}
+
+.section {
+	width: 728upx;
+	height: 400upx;
+	background-color: white;
+	border-radius: 10upx;
+	display: flex;
+	margin-bottom: 20upx;
+}
+
+.left {
+	width: 480upx;
+	height: 100%;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+
+.lefts {
+	width: 442upx;
+	height: 318upx;
+	border-radius: 10upx;
+	background-color: rgb(242, 242, 242);
+}
+
+.right {
+	width: 248upx;
+	height: 100%;
+	/* background: url('~@/static/login/jx.png'); */
+	background-repeat: no-repeat;
+	background-size: 100%;
+	display: flex;
+	align-items: center;
+	justify-content: space-around;
+	flex-direction: column;
+}
+
+.right h2 {
+	width: 192upx;
+	height: 52upx;
+	font-size: 32upx;
+	font-weight: 500;
+	color: white;
+	text-align: center;
+	line-height: 52upx;
+	background-color: #FB95AD;
+	border-radius: 15px;
+
+}
+
+.right h3 {
+	width: 192upx;
+	height: 52upx;
+	font-size: 28upx;
+	font-weight: 500;
+	text-align: center;
+	color: #FB95AD;
+	line-height: 52upx;
+
+}
+
+.right_section {
+	height: 202upx;
+	width: 192upx;
+	border-radius: 5upx solid red;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+
+}
+
+.right_sections {
+	width: 120upx;
+	height: 120upx;
+	background-color: #FB95AD;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	border-radius: 50%;
+}
+
+.right_sections .cuIcon-camera {
+	font-size: 40rpx;
+	color: #fff;
+}
+#nexts{
+	margin-top: 20upx;
+	height: 78upx;
+	width: 478upx;
+	background-color:rgb(27,25,26);
+	color: white;
+}

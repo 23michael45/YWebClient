@@ -1,0 +1,33 @@
+.registe .title {
+  width: 280rpx;
+  text-align: right;
+}
+.registe .title .cuIcon-info {
+  margin-right: 10rpx;
+}
+.registe .agreement {
+  padding: 20rpx 40rpx;
+  color: #666;
+}
+.registe .agreement .cuIcon-round:before {
+  font-size: 30rpx;
+  margin-right: 10rpx;
+}
+.registe .agreement .cuIcon-roundcheck:before {
+  font-size: 30rpx;
+  margin-right: 10rpx;
+  color: limegreen;
+}
+.registe .agreement .agreement-text {
+  color: #0D8CE7;
+}
+.registe .registe-btn {
+  padding: 40rpx;
+}
+.registe .registe-btn .opt {
+  opacity: 0.5;
+}
+.registe .placeholder {
+  color: #bbb;
+}
+

@@ -1,0 +1,6 @@
+{
+  "navigationBarTitleText": "",
+  "usingComponents": {
+    "cut": "/colorui/components/cu-custom"
+  }
+}

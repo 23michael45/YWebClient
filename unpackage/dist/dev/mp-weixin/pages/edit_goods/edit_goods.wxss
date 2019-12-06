@@ -1,0 +1,18 @@
+.edit-goods .cu-form-group .grid .bg-img {
+  border: 1px solid #eee;
+  position: relative;
+}
+.edit-goods .cu-form-group .grid .bg-img video {
+  width: 160rpx;
+  height: 160rpx;
+}
+.edit-goods .cu-form-group .grid .bg-img .bg-red {
+  position: absolute;
+  right: 0;
+  top: 0;
+}
+.edit-goods .my-btn {
+  text-align: center;
+  margin-top: 250rpx;
+}
+

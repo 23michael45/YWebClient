@@ -1,0 +1,6 @@
+{
+  "navigationBarTitleText": "活动",
+  "enablePullDownRefresh": true,
+  "onReachBottom": 80,
+  "usingComponents": {}
+}

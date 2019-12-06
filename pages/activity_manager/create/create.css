@@ -1,0 +1,38 @@
+
+.create-in {
+	height: 480upx;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+
+.create-box {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+}
+
+.create-title {
+	color: #333;
+	font-size: 30upx;
+}
+
+.create-btn {
+	width: 320upx;
+	height: 180upx;
+	background: #fff;
+	border-radius: 20upx;
+	margin: 20upx 0;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+
+.create-btn .cuIcon-add {
+	font-size: 100upx;
+}
+
+.create-tips {
+	font-size: 22upx;
+	color: #999;
+}

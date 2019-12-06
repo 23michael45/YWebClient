@@ -1,0 +1,198 @@
+.shop-list {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  padding: 25rpx 0;
+  height: 260rpx;
+  background: #fff;
+  position: relative;
+  margin-bottom: 10rpx;
+}
+.shop-list.select-active {
+  background: rgba(0, 0, 0, 0.1);
+}
+.shop-list .select {
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 999;
+  height: 100%;
+  width: 100%;
+}
+.shop-list .select .cuIcon-delete {
+  position: absolute;
+  top: 50%;
+  left: 20rpx;
+  -webkit-transform: translateY(-50%);
+      -ms-transform: translateY(-50%);
+          transform: translateY(-50%);
+  font-size: 50rpx;
+  color: red;
+}
+.shop-list .list-left {
+  width: 120rpx;
+  text-align: right;
+  padding: 0 10rpx;
+}
+.shop-list .list-left .day {
+  font-size: 42rpx;
+  font-weight: 600;
+}
+.shop-list .list-left .month {
+  font-size: 26rpx;
+}
+.shop-list .list-right {
+  position: relative;
+  -webkit-box-flex: 1;
+  -webkit-flex: 1;
+      -ms-flex: 1;
+          flex: 1;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+}
+.shop-list .list-right .list-icon {
+  width: 210rpx;
+  height: 210rpx;
+  position: relative;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex-wrap: wrap;
+      -ms-flex-wrap: wrap;
+          flex-wrap: wrap;
+  -webkit-box-pack: justify;
+  -webkit-justify-content: space-between;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  -webkit-align-content: space-between;
+      -ms-flex-line-pack: justify;
+          align-content: space-between;
+}
+.shop-list .list-right .list-icon .cuIcon-record {
+  font-size: 50rpx;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  -webkit-transform: translate(-50%, -50%);
+      -ms-transform: translate(-50%, -50%);
+          transform: translate(-50%, -50%);
+  color: #fff;
+}
+.shop-list .list-right .list-icon .image {
+  border: 1px solid #eee;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+}
+.shop-list .list-right .list-icon .img-size {
+  width: 100rpx;
+  height: 100rpx;
+}
+.shop-list .list-right .list-icon .img-size-01 {
+  width: 100rpx;
+  height: 210rpx;
+}
+.shop-list .list-right .list-info {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+  -webkit-flex-direction: column;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-pack: justify;
+  -webkit-justify-content: space-between;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  padding-left: 20rpx;
+  width: 260rpx;
+  height: 100%;
+  font-size: 24rpx;
+}
+.shop-list .list-right .list-info .info-top {
+  font-size: 26rpx;
+  overflow: hidden;
+  -o-text-overflow: ellipsis;
+     text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+}
+.shop-list .list-right .list-info .info-operate {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+}
+.shop-list .list-right .list-info .info-operate text {
+  margin-right: 30rpx;
+  color: #0081ff;
+}
+.shop-list .list-right .share {
+  position: absolute;
+  bottom: 0;
+  right: 60rpx;
+}
+.shop-list .list-right .share .list-share {
+  color: #fff;
+  border: 1px solid #FB95AD;
+  background: #FB95AD;
+  height: 60rpx;
+  line-height: 60rpx;
+  padding: 0rpx 50rpx;
+  border-radius: 100rpx;
+  margin-top: 10rpx;
+}
+.shop-list .list-right .share .share-box {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+  -webkit-flex-direction: column;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-align: center;
+  -webkit-align-items: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+.shop-list .list-right .share .share-box image {
+  width: 50rpx;
+  height: 50rpx;
+}
+.shop-list .list-right .share .share-box text {
+  color: #333;
+  font-size: 26rpx;
+  margin-top: 10rpx;
+}
+.shop-list .line {
+  position: absolute;
+  top: 0;
+  width: 100%;
+  height: 4rpx;
+  background: #eee;
+}
+.shop-list .edit {
+  position: absolute;
+  top: 10rpx;
+  right: 30rpx;
+  width: 110rpx;
+  background: #fff;
+  color: #a3a3a3;
+  border: 1px solid #e2e2e2;
+  height: 44rpx;
+  line-height: 44rpx;
+  text-align: center;
+  border-radius: 100rpx;
+  margin-top: 10rpx;
+  font-size: 22rpx;
+}
+

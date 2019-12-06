@@ -1,0 +1,141 @@
+
+.banner.data-v-7b38e838 {
+	height: 180rpx;
+}
+.banner image.data-v-7b38e838 {
+	width: 100%;
+	height: 100%;
+}
+.tips.data-v-7b38e838 {
+	height: 40rpx;
+	line-height: 40rpx;
+	font-size: 20rpx;
+	text-align: center;
+}
+.activity-box.data-v-7b38e838 {
+	padding: 0 20rpx;
+}
+.my-card.data-v-7b38e838 {
+	width: 100%;
+	height: 220rpx;
+	background: #fff;
+	border-radius: 10rpx;
+	overflow: hidden;
+	position: relative;
+}
+.my-card .title.data-v-7b38e838 {
+	position: absolute;
+	width: 100%;
+	height: 30rpx;
+	line-height: 30rpx;
+	background: rgba(0,0,0,.3);
+	text-align: center;
+	color: #fff;
+	font-size: 18rpx;
+	z-index: 98
+}
+.my-card .title input.data-v-7b38e838 {
+	height: 30rpx;
+	min-height: 30rpx;
+	line-height: 30rpx;
+}
+.my-card .logo.data-v-7b38e838 {
+	position: absolute;
+	top: 10rpx;
+	left: 10rpx;
+	width: 40rpx;
+	height: 40rpx;
+	z-index: 99;
+}
+.my-card .logo image.data-v-7b38e838 {
+	width: 100%;
+	height: 100%;
+	border-radius: 100%;
+}
+.my-card .upload-logo.data-v-7b38e838 {
+	width: 40rpx;
+	height: 40rpx;
+	line-height: 40rpx;
+	font-size: 18rpx;
+	text-align: center;
+	background: #626262;
+	color: #fff;
+}
+.my-card .mode.data-v-7b38e838 {
+	position: absolute;
+	top: 0;
+	right: 10rpx;
+	width: 26rpx;
+	height: 60rpx;
+	z-index: 99
+}
+.my-card .mode image.data-v-7b38e838 {
+	width: 100%;
+	height: 100%;
+}
+.my-card .bgc.data-v-7b38e838 {
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+}
+.my-card .bgc image.data-v-7b38e838 {
+	width: 100%;
+	height: 100%;
+}
+.my-card .bgc .bgcTip.data-v-7b38e838 {
+	position: absolute;
+	top: 45%;
+	left: 50%;
+	-webkit-transform: translate(-50%,-50%);
+	    -ms-transform: translate(-50%,-50%);
+	        transform: translate(-50%,-50%);
+	display: -webkit-box;
+	display: -webkit-flex;
+	display: -ms-flexbox;
+	display: flex;
+	-webkit-box-orient: vertical;
+	-webkit-box-direction: normal;
+	-webkit-flex-direction: column;
+	    -ms-flex-direction: column;
+	        flex-direction: column;
+	-webkit-box-align: center;
+	-webkit-align-items: center;
+	    -ms-flex-align: center;
+	        align-items: center;
+}
+.my-card .bgc .bgcTip text.data-v-7b38e838 {
+	font-size: 70rpx;
+}
+.my-card .bgc .bgcTip .tip-text.data-v-7b38e838 {
+	font-size: 26rpx;
+}
+.my-card .bottom.data-v-7b38e838 {
+	position: absolute;
+	bottom: 0;
+	width: 100%;
+	height: 40rpx;
+	background: rgba(0,0,0,.3);
+	display: -webkit-box;
+	display: -webkit-flex;
+	display: -ms-flexbox;
+	display: flex;
+	-webkit-justify-content: space-around;
+	    -ms-flex-pack: distribute;
+	        justify-content: space-around;
+	-webkit-box-align: center;
+	-webkit-align-items: center;
+	    -ms-flex-align: center;
+	        align-items: center;
+	z-index: 99;
+}
+.my-card .bottom .bottom-item.data-v-7b38e838 {
+	width: 30rpx;
+	height: 30rpx;
+}
+.my-card .bottom .bottom-item image.data-v-7b38e838 {
+	width: 100%;
+	height: 100%;
+}
+

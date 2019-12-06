@@ -1,0 +1,87 @@
+.store .top {
+  position: relative;
+  height: 320rpx;
+  background: #fff;
+}
+.store .top .logo {
+  position: absolute;
+  top: 40rpx;
+  left: 50%;
+  -webkit-transform: translateX(-50%);
+      -ms-transform: translateX(-50%);
+          transform: translateX(-50%);
+}
+.store .top .logo .icon {
+  width: 180rpx;
+  height: 180rpx;
+  border-radius: 100%;
+  border: 2px solid #eee;
+  overflow: hidden;
+  position: relative;
+  left: 50%;
+  -webkit-transform: translateX(-50%);
+      -ms-transform: translateX(-50%);
+          transform: translateX(-50%);
+}
+.store .top .logo .icon image {
+  width: 100%;
+  height: 100%;
+}
+.store .top .logo .icon text {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  -webkit-transform: translate(-50%, -50%);
+      -ms-transform: translate(-50%, -50%);
+          transform: translate(-50%, -50%);
+  font-size: 80rpx;
+}
+.store .top .logo .text {
+  text-align: center;
+  margin-top: 20rpx;
+}
+.store .top .logo .text-black {
+  position: absolute;
+  top: 40%;
+  left: 50%;
+  -webkit-transform: translate(-50%, -50%);
+      -ms-transform: translate(-50%, -50%);
+          transform: translate(-50%, -50%);
+}
+.store .top .logo .cuIcon-vip {
+  position: absolute;
+  bottom: 10rpx;
+  right: 0;
+  -webkit-animation: showColor 2s infinite;
+          animation: showColor 2s infinite;
+}
+.store .top .logo .qr {
+  text-align: center;
+  font-size: 40rpx;
+}
+.store .bottom {
+  border-top: 10px solid #eee;
+}
+@-webkit-keyframes showColor {
+0% {
+    color: rgba(255, 0, 0, 0.3);
+}
+50% {
+    color: #ff0000;
+}
+100% {
+    color: rgba(255, 0, 0, 0.3);
+}
+}
+@keyframes showColor {
+0% {
+    color: rgba(255, 0, 0, 0.3);
+}
+50% {
+    color: #ff0000;
+}
+100% {
+    color: rgba(255, 0, 0, 0.3);
+}
+}
+

@@ -1,0 +1,80 @@
+.atlas {
+  margin-top: 10px;
+  background: #fff;
+  padding-bottom: 30rpx;
+}
+.atlas .atlas-content {
+  width: 590rpx;
+  margin: 0 auto;
+  position: relative;
+}
+.atlas .atlas-content .atlas-time {
+  color: #666;
+  height: 80rpx;
+  line-height: 80rpx;
+}
+.atlas .atlas-content .atlas-text {
+  margin: 0rpx 0 20rpx;
+  font-size: 28rpx;
+}
+.atlas .atlas-content .atlas-goods {
+  width: 590rpx;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex-wrap: wrap;
+      -ms-flex-wrap: wrap;
+          flex-wrap: wrap;
+}
+.atlas .atlas-content .atlas-goods .goods-item {
+  width: 190rpx;
+  height: 190rpx;
+  margin-bottom: 10rpx;
+  margin-right: 10rpx;
+}
+.atlas .atlas-content .atlas-goods .goods-item:nth-child(3n) {
+  margin-right: 0;
+}
+.atlas .atlas-content .atlas-goods .goods-item image {
+  width: 100%;
+  height: 100%;
+  border: 1px solid #eee;
+}
+.atlas .atlas-content .atlas-goods video {
+  width: 100%;
+  height: 320rpx;
+}
+.atlas .atlas-content .atlas-btn-box {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+  -webkit-justify-content: space-between;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  margin-top: 20rpx;
+}
+.atlas .atlas-content .atlas-btn-box .atlas-btn {
+  width: 250rpx;
+  border: 1px solid #ccc;
+  border-radius: 100rpx;
+  height: 60rpx;
+  line-height: 60rpx;
+  text-align: center;
+  color: #333;
+}
+.atlas .atlas-content .atlas-share {
+  position: absolute;
+  top: 10rpx;
+  right: 0;
+  color: #fff;
+  border: 1px solid #FB95AD;
+  background: #FB95AD;
+  height: 60rpx;
+  line-height: 60rpx;
+  padding: 0rpx 50rpx;
+  border-radius: 100rpx;
+}
+

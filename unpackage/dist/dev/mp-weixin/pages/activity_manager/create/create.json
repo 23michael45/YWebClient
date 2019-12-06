@@ -1,0 +1,6 @@
+{
+  "navigationBarTitleText": "创建活动",
+  "usingComponents": {
+    "chun-lei-modal": "/components/chunLei-modal/chunLei-modal"
+  }
+}

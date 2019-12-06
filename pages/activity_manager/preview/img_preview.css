@@ -1,0 +1,39 @@
+
+
+.pre-content {
+	margin: 30upx 150upx;
+	background: #fff;
+	height: 875upx;
+	border: 1px solid #eee;
+}
+.pre-switch {
+	height: 875upx;
+}
+.pre-back {
+	height: 60upx;
+	border-bottom:1upx solid #eee;
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+}
+
+.pre-back .my-back {
+	width: 60upx;
+	height: 60upx;
+	font-size: 30upx;
+	position: relative;
+}
+
+.pre-back .my-back:before {
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%,-50%);
+}
+
+.show {
+	display: block !important;
+}
+.hide {
+	display: none !important;
+}

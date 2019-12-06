@@ -1,0 +1,9 @@
+{
+  "navigationBarTitleText": "",
+  "usingComponents": {
+    "preview-one": "/components/my-components/preview/preview-01",
+    "preview-two": "/components/my-components/preview/preview-02",
+    "preview-three": "/components/my-components/preview/preview-03",
+    "preview-four": "/components/my-components/preview/preview-04"
+  }
+}

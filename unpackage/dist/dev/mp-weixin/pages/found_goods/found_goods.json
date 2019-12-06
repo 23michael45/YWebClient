@@ -1,0 +1,6 @@
+{
+  "navigationBarTitleText": "创建商品",
+  "usingComponents": {
+    "video-play": "/components/video-play"
+  }
+}

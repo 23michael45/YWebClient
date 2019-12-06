@@ -1,0 +1,164 @@
+                   {
+	"pages": [ //pages数组中第一项表示应用启动页，参考：https://uniapp.dcloud.io/collocation/pages
+		
+		{
+			"path": "pages/home/home",
+			"style": {
+				"navigationBarTitleText": "首页"
+			}
+		},
+		// {
+		// 	"path": "pages/index/index",
+		// 	"style": {
+		// 		"navigationBarTitleText": "首页"
+		// 	}
+		// },
+		{
+			"path": "pages/atlas/atlas",
+			"style": {
+				"navigationBarTitleText": "分享"
+			}
+		},
+		// {
+		// 	"path": "pages/store/store",
+		// 	"style": {
+		// 		"navigationBarTitleText": "店铺"
+		// 	}
+		// },
+		{
+			"path": "pages/store_info/store_info",
+			"style": {
+				"navigationBarTitleText": "店铺信息"
+			}
+		},
+		{
+			"path": "pages/service_info/service_info",
+			"style": {
+				"navigationBarTitleText": "客服信息"
+			}
+		},
+		{
+			"path": "pages/edit_goods/edit_goods",
+			"style": {
+				"navigationBarTitleText": "编辑商品"
+			}
+		},
+		{
+			"path": "pages/found_goods/found_goods",
+			"style": {
+				"navigationBarTitleText": "创建商品"
+			}
+		},
+		{
+			"path": "pages/login/login",
+			"style": {
+				"navigationBarTitleText": "登陆",
+				"navigationBarTextStyle": "white"
+			}
+		},
+		{
+			"path": "pages/registe/registe",
+			"style": {
+				"navigationBarTitleText": "注册"
+			}
+		},
+		{
+			"path": "pages/settings/settings",
+			"style": {
+				"navigationBarTitleText": "设置"
+			}
+		},
+		{
+			"path": "pages/activity_manager/activityManager",
+			"style": {
+				"navigationBarTitleText": "活动",
+				"enablePullDownRefresh": true,
+				"onReachBottom": 80
+			}
+		},
+		{
+			"path": "pages/activity_manager/create/create",
+			"style": {
+				"navigationBarTitleText": "创建活动"
+			}
+		},
+		{
+			"path": "pages/activity_manager/edit-activity",
+			"style": {
+				"navigationBarTitleText": ""
+			}
+		},
+		{
+			"path": "pages/activity_manager/cut",
+			"style": {
+				"navigationBarTitleText": ""
+			}
+		},
+		{
+			"path": "pages/activity_manager/surfaceActivity",
+			"style": {
+				"navigationBarTitleText": ""
+			}
+		},
+		{
+			"path": "pages/activity_manager/edit-content",
+			"style": {
+				"navigationBarTitleText": ""
+			}
+		},
+		{
+			"path": "pages/activity_manager/preview/img_preview",
+			"style": {
+				"navigationBarTitleText": ""
+			}
+		},
+		{
+			"path": "pages/activity_manager/preview/video_preview",
+			"style": {
+				"navigationBarTitleText": ""
+			}
+		},
+		{
+			"path": "pages/activity_manager/activityQuery",
+			"style": {
+				"enablePullDownRefresh": true,
+				"onReachBottom": 80
+			}
+		},
+		{
+			"path": "pages/attestAtion/attestAtion",
+			"style": {
+				
+			}
+		},
+		{
+			"path": "pages/feedback/feedback",
+			"style": {
+				
+			}
+		},
+		{
+			"path": "pages/activity_manager/gitcut/gifCut",
+			"style": {
+				
+			}
+		}
+		
+		
+
+	],
+	"globalStyle": {
+		"navigationBarTextStyle": "black",
+		"navigationBarTitleText": "羽迹商家后台",
+		"navigationBarBackgroundColor": "#F8F8F8",
+		"backgroundColor": "#F8F8F8",
+		"navigationStyle": "custom"
+	},"condition": { //模式配置，仅开发期间生效
+		"current": 0, //当前激活的模式(list 的索引项)
+		"list": [{
+			"name": "协议", //模式名称
+			"path": "pages/activity_manager/edit-activity", //启动页面，必选
+			"query": "" //启动参数，在页面的onLoad函数里面得到
+		}]
+	}
+}

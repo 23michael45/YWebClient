@@ -1,0 +1,10 @@
+
+.preview-02 {
+	width: 100%;
+	height: 875rpx;
+}
+.preview-02 .img {
+	width: 100%;
+	height: 100%;
+}
+
