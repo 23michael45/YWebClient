@@ -171,7 +171,7 @@
 					})
 				})
 			},
-			loadImgs(){
+			loadImgs:function(){//客服图片加载优化
 				that.imgLoadBol=true;
 			}
 		}
