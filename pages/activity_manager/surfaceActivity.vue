@@ -134,7 +134,11 @@
 				maskCount: 0,
 				bannerBol: false,
 				goodClassId: '',
-				activity:''
+				activity:'',
+				materialBack:false,
+				imgType:'jpg',
+				ImgIndex:0
+				
 			}
 		},
 		onLoad(options) {
@@ -142,11 +146,13 @@
 			options.activityId ? that.goodClassId = options.activityId : ''
 			uni.$on('uploads', that.uploads);
 			uni.$on('list_imgupload', that.list_imgupload);
+			uni.$on('MaterialBack', that.MaterialBack);
 		},
 		beforeDestroy: function() {
 			console.log('销毁');
 			uni.$off('uploads');
 			uni.$off('list_imgupload');
+			uni.$off('MaterialBack');
 		},
 		//加载的时候查询是否存在活动 存在则查询活动下的所有图片信息并调用工具类排序
 		mounted() {
@@ -160,10 +166,9 @@
 					let gcImgList = res.info.list[0].gcImgList.sort(that.$utils.compare('seqno')); //排序
 					gcImgList = that.$utils.list_sort(gcImgList) //分组
 					that.activity=res.info.list[0];
-					console.log(gcImgList)
 					let activity_imgList = [];
 					//从第一个开始 0下标数组位置存放的是活动的其余图片
-					for (let i = 1; i < gcImgList.length; i++) {
+					for (let i = 0; i < gcImgList.length; i++) {
 						let index = i;
 						--index;
 						var list = [{
@@ -225,6 +230,7 @@
 						that.imgAdd(); //如果数组中没有数据那么就插入一个新数组
 					}
 				});
+				
 				that.searchReference(); //查询参考图
 			}
 		},
@@ -410,6 +416,8 @@
 			 * @param {Object} index 数组下标
 			 */
 			imgs_Upload: function(type, img_type, index) {
+				that.imgType=img_type;
+				that.ImgIndex=index;
 				if (type == 'mask') { //判断是否是上传mask
 					//如果上传得是mask图那么必须先上传角色图
 					if (!(that.activity_imgList[index][0].id > 0 && that.activity_imgList[index][0].url)) {
@@ -420,36 +428,46 @@
 								setTimeout(function() {
 									uni.hideToast();
 								}, 1500);
-								return;
+								
 							}
 						});
+						return;
 					}
 				}
+				let list = [{
+						width: 1080,
+						height: 1920,
+						img_type: 'raw'
+					},
+					{
+						width: 486,
+						height: 864,
+						img_type: 'thumbnail'
+					},
+					{
+						width: 108,
+						height: 192,
+						img_type: 'role'
+					},
+				];
+				let list1 = [{
+						width: 1080,
+						height: 1920,
+						img_type: 'raw'
+					},
+					{
+						width: 486,
+						height: 864,
+						img_type: 'thumbnail'
+					}
+				];
 				uni.showActionSheet({
 					itemList: ['素材', '本地上传'],
 					success: (res) => {
 						if (res.tapIndex == 1 && img_type == 'jpg') {
-							var list = [{
-									width: 1080,
-									height: 1920,
-									img_type: 'raw'
-								},
-								{
-									width: 486,
-									height: 864,
-									img_type: 'thumbnail'
-								},
-								{
-									width: 108,
-									height: 192,
-									img_type: 'role'
-								},
-							];
+							
 							list = JSON.stringify(list);
 							that.roleCount = 0; //设置图片上传次数验证数量 防止多次上传
-							// uni.navigateTo({
-							// 	url: `../cut/cut?width=216&height=384&pixelRatio=5&type=uploads&fileType=jpg&drawing_number=3&index=${index}&tailor_count=${list}`
-							// });
 							that.$Router.push({
 								name: 'cut',
 								params: {
@@ -464,22 +482,9 @@
 								}
 							});
 						} else if (res.tapIndex == 1 && img_type == 'png') {
-							var list = [{
-									width: 1080,
-									height: 1920,
-									img_type: 'raw'
-								},
-								{
-									width: 486,
-									height: 864,
-									img_type: 'thumbnail'
-								}
-							];
+							
 							list = JSON.stringify(list);
 							that.maskCount = 0;
-							// uni.navigateTo({
-							// 	url: `../cut/cut?width=216&height=384&pixelRatio=5&type=uploads&drawing_number=2&index=${index}&tailor_count=${list}`
-							// })
 							that.$Router.push({
 								name: 'cut',
 								params: {
@@ -489,12 +494,12 @@
 									type: 'uploads',
 									drawing_number: 2,
 									index: index,
-									tailor_count: list
+									tailor_count: list1
 								}
 							});
 						} else {
-							uni.navigateTo({
-								url: '/pages/material/img_material/material'
+							that.$Router.push({//调用素材库传参
+								name: 'imgMaterial'
 							});
 						}
 
@@ -756,6 +761,70 @@
 						}
 					})
 				})
+			},
+			MaterialBack:function(item){//素材返回判断
+				let list = [{
+						width: 1080,
+						height: 1920,
+						img_type: 'raw'
+					},
+					{
+						width: 486,
+						height: 864,
+						img_type: 'thumbnail'
+					},
+					{
+						width: 108,
+						height: 192,
+						img_type: 'role'
+					},
+				];
+				let list1 = [{
+						width: 1080,
+						height: 1920,
+						img_type: 'raw'
+					},
+					{
+						width: 486,
+						height: 864,
+						img_type: 'thumbnail'
+					}
+				];
+				list=JSON.stringify(list);
+				list1=JSON.stringify(list1);
+				console.log(item.imgUrl)
+				if(that.imgType=='jpg'){
+					
+					that.$Router.push({
+						name: 'cut',
+						params: {
+							width: 216,
+							height: 384,
+							pixelRatio: 5,
+							type: 'uploads',
+							fileType: 'jpg',
+							drawing_number: 3,
+							index:  that.ImgIndex,
+							tailor_count: list,
+							imgUrl:item.imgUrl
+						}
+					});
+				}else{
+					
+					that.$Router.push({
+						name: 'cut',
+						params: {
+							width: 216,
+							height: 384,
+							pixelRatio: 5,
+							type: 'uploads',
+							drawing_number: 2,
+							index: that.ImgIndex,
+							tailor_count: list1,
+							imgUrl:item.imgUrl
+						}
+					});
+				}
 			}
 		}
 	}

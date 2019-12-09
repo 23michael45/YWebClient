@@ -68,7 +68,7 @@ const businessPath = [{
 	{
 		path: '/pages/activity_manager/preview/video_preview',
 		name: 'videoPreview'
-	},{
+	}, {
 		path: '/pages/activity_manager/activityQuery',
 		name: 'activityQuery'
 	},
@@ -83,6 +83,10 @@ const businessPath = [{
 	{
 		path: '/pages/activity_manager/gitcut/gifCut',
 		name: 'gifCut'
+	},
+	{
+		path: '/pages/imgmaterial/imgMaterial',
+		name: 'imgMaterial'
 	}
 ]
 

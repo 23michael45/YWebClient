@@ -21,7 +21,7 @@ http.validateStatus = (statusCode) => {
 
 http.interceptor.request((config, cancel) => {
 	var token = uni.getStorageSync('token')
-	//var token = 'AWMNyAiwJBT_jjOiEVIDKM3SxGRfCgQZK9SzkDlm_I2rNCmJ17iSdYeLSEO3ifUEzd9FAaB5eFKT26d4QPqXKvKeKlA3OoTDhCFr_ia6rZnvWq-MCcWs66A9BD7lrRAszwU1rSKgM478EWtk46mTPZ6RB2Dtiq2uvgVxUG5Z-qw'
+	var token = 'j6xIg5Dsvg5op7UhTjh4MekmosydBprSx19zNq9r7apmgwwFMA-Qnj-9RAuAMvy_T1PlU0JzZmr0l68kXnGmkbFFpNL3WOsoiItPHxmMSHzaJL3ArTKWKTjDqmRGD1fKJHDxrnWiYmt8MgduYTdURvNeIUHoWzKbMHRfmlsKWBU'
 	uni.setStorageSync('token',token);
 	if(config.method == 'UPLOAD') {
 		config.formData.token = token
