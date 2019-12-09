@@ -1,8 +1,0 @@
-{
-  "navigationBarTitleText": "首页",
-  "usingComponents": {
-    "index": "/pages/index/index",
-    "store": "/pages/store/store",
-    "activity-manager": "/pages/activity_manager/activityManager"
-  }
-}

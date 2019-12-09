@@ -1,9 +1,0 @@
-{
-  "usingComponents": {
-    "top-bar": "/components/top-bar",
-    "shop-list": "/components/shop-list",
-    "my-atlas": "/components/my-atlas",
-    "video-list": "/components/video-list"
-  },
-  "component": true
-}

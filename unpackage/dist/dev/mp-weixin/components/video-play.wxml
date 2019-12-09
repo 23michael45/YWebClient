@@ -1,1 +1,0 @@
-<view><block wx:if="{{show}}"><view class="video-play" style="{{'padding-top:'+(CustomBar+'px')+';'}}"><view data-event-opts="{{[['tap',[['hide',['$event']]]]]}}" class="back" style="{{'top:'+(CustomBar+'px')+';'}}" bindtap="__e">返回</view><video class="video" id="video" src="{{video}}" controls autoplay></video></view></block></view>

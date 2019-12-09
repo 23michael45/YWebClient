@@ -1,1 +1,0 @@
-<view class="preview-02"><image class="img" src="{{backdropImg}}" mode data-event-opts="{{[['tap',[['change',['$event']]]]]}}" bindtap="__e"></image></view>

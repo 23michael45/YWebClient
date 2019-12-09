@@ -1,7 +1,0 @@
-{
-  "navigationBarTitleText": "",
-  "usingComponents": {
-    "tap-bar": "/components/my-components/top-bar",
-    "card-box": "/components/my-components/card-box"
-  }
-}
