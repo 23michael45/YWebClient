@@ -277,7 +277,9 @@
 			 * 然后将其从对应数组删除并且查询一遍
 			 */
 			OnshowInit: function(e) { //修改属性值
-				that[e.dataName].splice(e.index, 1);
+				if(e.dataName){
+					that[e.dataName].splice(e.index, 1);
+				}
 				searchGoodsClass({
 					getDetail: true,
 					id: e.id

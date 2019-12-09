@@ -225,7 +225,6 @@
 						await delGcImg(pars).then(res => {});
 					}
 				}
-				console.log(par);
 				par.goodClassId = that.goodClassId;
 				await upGcImg(rsp.path, par).then(res => {
 					let title = '';
@@ -237,6 +236,7 @@
 						title = '图片上传成功'
 						that.activity[rsp.index].url = rsp.path;
 						that.activity[rsp.index].id = re.info;
+						console.log(that.goodClassId)
 						uni.$emit('updateActivity',{id:that.goodClassId,dataName:that.dataName,index:that.index});//调用父级方法修改值
 					}
 					uni.showToast({
