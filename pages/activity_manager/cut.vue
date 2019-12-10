@@ -62,7 +62,6 @@
 		},
 		onLoad: function(options) {
 			that = this;
-			console.log(options)
 			this.type = options.type
 			this.cropperOpt.cut.x = (width - options.width) / 2
 			this.cropperOpt.cut.y = (height - options.height) / 2
