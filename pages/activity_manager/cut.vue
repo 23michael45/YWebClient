@@ -72,8 +72,9 @@
 			this.fileType = options.fileType || 'png'
 			this.drawing_number = options.drawing_number?options.drawing_number:0
 			//是否存在图片 存在则不调用本地上传,直接裁剪
-			this.imgUrl = options.imgUrl?options.imgUrl:''
-			console.log(options.imgUrl)
+			let imgUrl=uni.getStorageSync('imgUrl');
+			this.imgUrl = imgUrl?imgUrl:''
+			uni.clearStorageSync('imgUrl');
 			//裁剪尺寸次数
 			this.tailor_count = options.tailor_count ? JSON.parse(options.tailor_count) : ''
 			this.index = options.index || 0
@@ -102,9 +103,8 @@
 				const self = this;
 				if (!that.step) return;
 				that.step = false
-				that.imgUr=uni.encodeURI(that.imgUrl) 
-				console.log(that.imgUrl)
 				if(that.imgUrl){
+					console.log(that.imgUrl)
 					self.wecropper.pushOrign(that.imgUrl)
 					self.chooseImg = true
 				}else{

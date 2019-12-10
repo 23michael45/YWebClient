@@ -277,23 +277,26 @@
 			 * 然后将其从对应数组删除并且查询一遍
 			 */
 			OnshowInit: function(e) { //修改属性值
-				if(e.dataName){
+				if (e.dataName) {
 					that[e.dataName].splice(e.index, 1);
 				}
 				searchGoodsClass({
 					getDetail: true,
 					id: e.id
 				}).then(res => {
-					if(res.info.list[0].status==1){
-						that.activity_one.unshift(res.info.list[0]);
-					}else if(res.info.list[0].status==2){
-						that.activity_two.unshift(res.info.list[0]);
-					}else if(res.info.list[0].status==3){
-						that.activity_three.unshift(res.info.list[0]);
-					}else  if(res.info.list[0].status==4){
-						that.activity_four.unshift(res.info.list[0]);
+					if (res.ret == 0) {
+						if (res.info.list[0].status == 1) {
+							that.activity_one.unshift(res.info.list[0]);
+						} else if (res.info.list[0].status == 2) {
+							that.activity_two.unshift(res.info.list[0]);
+						} else if (res.info.list[0].status == 3) {
+							that.activity_three.unshift(res.info.list[0]);
+						} else if (res.info.list[0].status == 4) {
+							that.activity_four.unshift(res.info.list[0]);
+						}
+
 					}
-					
+
 				});
 			},
 			/**
@@ -311,23 +314,24 @@
 					status: status,
 					seo: that.seo
 				}).then(async res => {
-					if (status == 1) {
-						that.Onepage_end = res.info.pageInfo.page_end;
-						that.Onewhich_page = res.info.pageInfo.which_page;
-					} else if (status == 2) {
-						that.Twopage_end = res.info.pageInfo.page_end;
-						that.Twowhich_page = res.info.pageInfo.which_page;
-					} else if (status == 3) {
-						that.Threepage_end = res.info.pageInfo.page_end;
-						that.Threewhich_page = res.info.pageInfo.which_page;
-					} else if (status == 4) {
-						that.Fourpage_end = res.info.pageInfo.page_end;
-						that.Fourwhich_page = res.info.pageInfo.which_page;
+					if (res.ret == 0) {
+						if (status == 1) {
+							that.Onepage_end = res.info.pageInfo.page_end;
+							that.Onewhich_page = res.info.pageInfo.which_page;
+						} else if (status == 2) {
+							that.Twopage_end = res.info.pageInfo.page_end;
+							that.Twowhich_page = res.info.pageInfo.which_page;
+						} else if (status == 3) {
+							that.Threepage_end = res.info.pageInfo.page_end;
+							that.Threewhich_page = res.info.pageInfo.which_page;
+						} else if (status == 4) {
+							that.Fourpage_end = res.info.pageInfo.page_end;
+							that.Fourwhich_page = res.info.pageInfo.which_page;
+						}
+						await that.sortList(res.info.list, status_name)
+						// that.querySts(status_name);
+						console.log(that[status_name])
 					}
-					await that.sortList(res.info.list, status_name)
-					// that.querySts(status_name);
-					console.log(that[status_name])
-
 				});
 			},
 			sortList: function(list, status_name) { //图片数据分组

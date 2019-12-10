@@ -792,7 +792,6 @@
 				];
 				list=JSON.stringify(list);
 				list1=JSON.stringify(list1);
-				console.log(item.imgUrl)
 				if(that.imgType=='jpg'){
 					
 					that.$Router.push({
@@ -805,8 +804,7 @@
 							fileType: 'jpg',
 							drawing_number: 3,
 							index:  that.ImgIndex,
-							tailor_count: list,
-							imgUrl:item.imgUrl
+							tailor_count: list
 						}
 					});
 				}else{
@@ -820,8 +818,7 @@
 							type: 'uploads',
 							drawing_number: 2,
 							index: that.ImgIndex,
-							tailor_count: list1,
-							imgUrl:item.imgUrl
+							tailor_count: list1
 						}
 					});
 				}
