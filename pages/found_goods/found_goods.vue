@@ -80,7 +80,6 @@
 							} else {
 								that.imgList = res.tempFilePaths
 							}
-
 						}
 					});
 				} else {
