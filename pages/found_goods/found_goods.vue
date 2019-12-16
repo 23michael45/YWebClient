@@ -165,29 +165,39 @@
 					})
 					Promise.all(arr).then((res) => {
 						uni.hideLoading()
-						// uni.$emit('getGoods')
+						uni.setStorageSync('add',JSON.stringify({
+							type: 'img',
+							id: that.goodsId
+						}))
+						uni.$emit('addGoods')
 						uni.showToast({
 							title: `保存成功`,
 							duration: 3000,
 							icon: 'none',
 							mask: true
 						});
-						that.$Router.replaceAll({name:'home'})
+						that.$Router.back(1)
 						
 					}).catch(err => {
 						console.log(err)
 					});
 				} else { //保存视频商品
 					that.upImg(that.videoList[0]).then((res)=>{
+						console.log(res)
+						console.log('res')
 						uni.hideLoading()
-						// uni.$emit('getGoods')
+						uni.setStorageSync('add',JSON.stringify({
+							type: 'video',
+							id: that.goodsId
+						}))
+						uni.$emit('addGoods')
 						uni.showToast({
 							title: `保存成功`,
 							duration: 2000,
 							icon: 'none',
 							mask: true
 						});
-						that.$Router.replaceAll({name:'home'})
+						that.$Router.back(1)
 					})
 				}
 			},

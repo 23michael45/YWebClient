@@ -47,20 +47,20 @@
 					success: function(res) {
 						if (res.confirm) {
 							console.log('用户点击确定');
-							that.delGoods(that.goodsObj.id)
+							that.delGoods(that.goodsObj)
 						} else if (res.cancel) {
 							console.log('用户点击取消');
 						}
 					}
 				});
 			},
-			delGoods: function(id) { //删除
+			delGoods: function(item) { //删除
 				delGoodsName({
-					id
+					id: item.id
 				}).then(res =>{
 					console.log(res)
 					if(res.ret == 0) {
-						uni.$emit('getGoods')
+						uni.$emit('changeData',item)
 						uni.showToast({
 							title: '删除成功',
 							duration: 2000
