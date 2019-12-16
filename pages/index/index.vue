@@ -106,9 +106,12 @@
 					orderDescCol: "optm"
 				}).then(res => {
 					// uni.hideLoading()
-					var list = res.info.list
-					that.allList = list
-					that.noAllData = that.allList.length ? false : true
+					if(res.ret == 0) {
+						
+						var list = res.info.list
+						that.allList = list
+						that.noAllData = that.allList.length ? false : true
+					}
 				})
 			},
 			lower: function() {
@@ -155,8 +158,10 @@
 					orderDescCol: "optm"
 				}).then(res => {
 					// uni.hideLoading()
-					that.videoList = res.info.list
-					that.noVideoData = that.videoList.length ? false : true
+					if(res.ret == 0) {
+						that.videoList = res.info.list
+						that.noVideoData = that.videoList.length ? false : true
+					}
 				})
 			},
 			getAtlasGoods: function() { //获取图库数据 --图集
@@ -167,8 +172,11 @@
 					orderDescCol: "optm"
 				}).then(res => {
 					uni.hideLoading()
-					that.atlasList = res.info.list
-					that.noAllData = that.atlasList.length ? false : true
+					if(res.ret == 0) {
+						
+						that.atlasList = res.info.list
+						that.noAllData = that.atlasList.length ? false : true
+					}
 				})
 			},
 			getGoods: function() {

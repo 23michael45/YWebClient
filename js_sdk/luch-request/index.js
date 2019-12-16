@@ -19,6 +19,7 @@ http.validateStatus = (statusCode) => {
 	return statusCode === 200
 }
 
+
 http.interceptor.request((config, cancel) => {
 	var token = uni.getStorageSync('token')
 	if(config.method == 'UPLOAD') {
