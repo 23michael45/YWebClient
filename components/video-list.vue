@@ -15,8 +15,11 @@
 				<view class="right-top">
 					{{item.unit}}
 				</view>
-				<view class="right-bottom">
-					分享
+				<view class="share">
+					<view class="share-box">
+						<image src="../static/img/share.png" mode=""></image>
+						<text>分享</text>
+					</view>
 				</view>
 			</view>
 		</view>
@@ -122,7 +125,38 @@
 				padding-left: 50rpx;
 				flex: 1;
 				position: relative;
-
+				.share {
+					position: absolute;
+					bottom: 0;
+					right: 0rpx;
+					// display: flex;
+					// align-items: flex-end;
+					
+					.list-share {
+						color: #fff;
+						border: 1px solid #FB95AD;
+						background: #FB95AD;
+						height: 60rpx;
+						line-height: 60rpx;
+						padding: 0rpx 50rpx;
+						border-radius: 100rpx;
+						margin-top: 10rpx;
+					}
+					.share-box {
+						display: flex;
+						flex-direction: column;
+						align-items: center;
+						image {
+							width: 50rpx;
+							height: 50rpx;
+						}
+						text {
+							color: #333;
+							font-size: 26rpx;
+							margin-top: 10rpx;
+						}
+					}
+				}
 				.right-top {
 					overflow: hidden;
 					text-overflow: ellipsis;
