@@ -129,10 +129,13 @@
 					orderDescCol: "optm"
 				}).then(res => {
 					// uni.hideLoading()
-					var list = res.info.list
-					that.allList = that.allList.concat(list) 
-					that.noAllData = that.allList.length ? false : true
-					that.allPage_end = res.info.pageInfo.page_end
+					if(res.ret == 0) {
+						
+						var list = res.info.list
+						that.allList = that.allList.concat(list) 
+						that.noAllData = that.allList.length ? false : true
+						that.allPage_end = res.info.pageInfo.page_end
+					}
 				})
 			},
 			lowerAll: function() {
@@ -213,10 +216,13 @@
 					orderDescCol: "optm"
 				}).then(res => {
 					// uni.hideLoading()
-					that.videoList = that.videoList.concat(res.info.list) 
-					that.noVideoData = that.videoList.length ? false : true
-					console.log(that.videoList)
-					that.videoPage_end = res.info.pageInfo.page_end
+					if(res.ret == 0) {
+						
+						that.videoList = that.videoList.concat(res.info.list) 
+						that.noVideoData = that.videoList.length ? false : true
+						console.log(that.videoList)
+						that.videoPage_end = res.info.pageInfo.page_end
+					}
 				})
 			},
 			getAtlasGoods: function() { //获取图库数据 --图集
@@ -228,9 +234,12 @@
 					orderDescCol: "optm"
 				}).then(res => {
 					uni.hideLoading()
-					that.atlasList = that.atlasList.concat(res.info.list) 
-					that.noImgData = that.atlasList.length ? false : true
-					that.imgPage_end = res.info.pageInfo.page_end
+					if(res.ret == 0) {
+						
+						that.atlasList = that.atlasList.concat(res.info.list) 
+						that.noImgData = that.atlasList.length ? false : true
+						that.imgPage_end = res.info.pageInfo.page_end
+					}
 				})
 			},
 			getGoods: function() {

@@ -73,7 +73,6 @@
 		mounted() {
 			that = this;
 			that.getCompany()
-			console.log(that.companyInfo)
 			uni.$on('getCompany',that.getCompany)
 		},
 		methods: {
