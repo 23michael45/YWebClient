@@ -158,7 +158,6 @@
 					}
 				})
 				if(that.isCanPrivate == 1) { //保存图片商品
-					
 					var arr = []
 					that.imgList.forEach((el, i) => {
 						arr.push(that.upImg(el, i))

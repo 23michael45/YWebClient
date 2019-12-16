@@ -69,6 +69,7 @@
 					}else {
 						uni.showToast({
 							title: '删除失败，请重试',
+							icon:'none',
 							duration: 2000
 						});
 					}
