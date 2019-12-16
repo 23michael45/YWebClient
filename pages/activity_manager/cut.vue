@@ -73,7 +73,7 @@
 			//是否存在图片 存在则不调用本地上传,直接裁剪
 			let imgUrl=uni.getStorageSync('imgUrl');
 			this.imgUrl = imgUrl?imgUrl:''
-			uni.clearStorageSync('imgUrl');
+			uni.removeStorageSync('imgUrl');
 			//裁剪尺寸次数
 			this.tailor_count = options.tailor_count ? JSON.parse(options.tailor_count) : ''
 			this.index = options.index || 0

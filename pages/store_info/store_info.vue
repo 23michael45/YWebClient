@@ -60,7 +60,7 @@
 		},
 		methods: {
 			getCompany: function() {
-				searchCompany().then(res=>{
+				searchCompany({id:JSON.parse(uni.getStorageSync('uInfo')).coid}).then(res=>{
 					console.log(res)
 					if(res.ret == 0) {
 						that.companyInfo = res.info.list[0]

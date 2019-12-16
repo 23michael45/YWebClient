@@ -483,7 +483,7 @@
 							});
 						} else if (res.tapIndex == 1 && img_type == 'png') {
 							
-							list = JSON.stringify(list);
+							list1 = JSON.stringify(list);
 							that.maskCount = 0;
 							that.$Router.push({
 								name: 'cut',
@@ -499,7 +499,10 @@
 							});
 						} else {
 							that.$Router.push({//调用素材库传参
-								name: 'imgMaterial'
+								name: 'imgMaterial',
+								params:{
+									imgVideoBol:1
+								}
 							});
 						}
 
@@ -762,7 +765,7 @@
 					})
 				})
 			},
-			MaterialBack:function(item){//素材返回判断
+			MaterialBack:function(item){//素材选择的图片返回监听事件
 				let list = [{
 						width: 1080,
 						height: 1920,

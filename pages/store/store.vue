@@ -21,12 +21,12 @@
 						<text class="text-black">店铺信息</text>
 					</view>
 				</view>
-				<view class="cu-item arrow">
+				<!-- <view class="cu-item arrow">
 					<view class="content">
 						<text class="cuIcon-discoverfill text-black"></text>
 						<text class="text-black">活动详情</text>
 					</view>
-				</view>
+				</view> -->
 				<view class="cu-item arrow" @tap="toAttestAtion">
 					<view class="content">
 						<text class="cuIcon-selectionfill text-black"></text>
@@ -120,6 +120,7 @@
 				that.$Router.push({name:'feedBack'})
 			},
 			updateIcon: function(url) {
+				console.log(that.companyInfo.id)
 				updateCo(url,{
 					id: that.companyInfo.id
 				}).then((res)=>{
@@ -140,7 +141,7 @@
 				})
 			},
 			getCompany: function() {
-				searchCompany().then(r=>{
+				searchCompany({id:JSON.parse(uni.getStorageSync('uInfo')).coid}).then(r=>{
 					console.log(r)
 					if(r.ret == 0) {
 					  that.companyInfo = r.info.list[0]

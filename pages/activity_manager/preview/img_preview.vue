@@ -1,6 +1,9 @@
 <template>
 	<view>
-	
+	<cu-custom class="seat" bgColor="bg-white" :isBack="true">
+		<block slot="backText">返回</block>
+		<block slot="content">平面活动预览</block>
+	</cu-custom>
 		<view class="pre-content">
 			<view class="pre-back">
 				<text class="my-back text-gray cuIcon-back" @tap="back" v-if="num != 0"></text>

@@ -278,7 +278,17 @@
 			 */
 			OnshowInit: function(e) { //修改属性值
 				if (e.dataName) {
-					that[e.dataName].splice(e.index, 1);
+					if(e.index){//判断index是否存在
+					console.log('存在下标')
+						that[e.dataName].splice(e.index, 1);//存在可以直接删除
+					}else{//不存在则自行搜索删除
+					console.log('不存在下标')
+						that[e.dataName].forEach((item,index)=>{
+							if(item.id==e.id){//等于 则剔除
+								that[e.dataName].splice(index, 1);//存在可以直接删除
+							}
+						});
+					}
 				}
 				searchGoodsClass({
 					getDetail: true,
