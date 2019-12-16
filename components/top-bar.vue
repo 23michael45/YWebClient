@@ -42,6 +42,7 @@
 		},
 		methods: {
 			changeTab: function(index) {
+				if(this.cur == index) return
 				this.getLeft(index)
 				this.cur = index
 				this.$emit('changeTab',this.cur)
@@ -62,6 +63,7 @@
 					// 	that.right = r.right
 					// 	that.width = r.width
 					// },150)
+					console.log(r)
 						that.left = r.left
 						that.width = r.width
 					
@@ -70,6 +72,7 @@
 		},
 		watch: {
 			tabCur(a) {
+				
 				this.cur = a
 				this.getLeft(a)
 			}
