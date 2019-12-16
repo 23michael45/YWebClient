@@ -165,7 +165,7 @@
 					})
 					Promise.all(arr).then((res) => {
 						uni.hideLoading()
-						uni.$emit('getGoods')
+						// uni.$emit('getGoods')
 						uni.showToast({
 							title: `保存成功`,
 							duration: 3000,
@@ -180,7 +180,7 @@
 				} else { //保存视频商品
 					that.upImg(that.videoList[0]).then((res)=>{
 						uni.hideLoading()
-						uni.$emit('getGoods')
+						// uni.$emit('getGoods')
 						uni.showToast({
 							title: `保存成功`,
 							duration: 2000,

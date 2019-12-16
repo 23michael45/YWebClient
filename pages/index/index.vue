@@ -215,7 +215,7 @@
 					// uni.hideLoading()
 					that.videoList = that.videoList.concat(res.info.list) 
 					that.noVideoData = that.videoList.length ? false : true
-					
+					console.log(that.videoList)
 					that.videoPage_end = res.info.pageInfo.page_end
 				})
 			},
