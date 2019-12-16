@@ -130,6 +130,7 @@
 					this.videoContext.pause()
 				}
 				if (this.current == id) {
+					this.current = ''
 					this.videoContext.pause()
 				} else {
 
