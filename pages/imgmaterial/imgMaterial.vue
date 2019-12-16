@@ -61,7 +61,6 @@
 				list.forEach(item => {
 					//判断是否是图片素材库
 					if (that.imgVideoBol == 1) {
-						console.log('图片素材进入')
 						item.imgList.forEach(is => {
 							if (RegExp("\.(" + imgType.join("|") + ")$", "i").test(is.url.toLowerCase())) {
 								that.list.push(is);
