@@ -24,10 +24,6 @@
 					</view>
 				</view>
 				<view class="share">
-					
-					<!-- <view class="list-share">
-						分享
-					</view> -->
 					<view class="share-box">
 						<image src="../static/img/share.png" mode=""></image>
 						<text>分享</text>
