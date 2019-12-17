@@ -57,6 +57,13 @@
 			}
 		},
 		{
+			"path": "pages/phoneLogin/phoneLogin",
+			"style": {
+				"navigationBarTitleText": "登陆",
+				"navigationBarTextStyle": "white"
+			}
+		},
+		{
 			"path": "pages/registe/registe",
 			"style": {
 				"navigationBarTitleText": "注册"

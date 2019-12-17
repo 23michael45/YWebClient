@@ -19,6 +19,10 @@ const businessPath = [{
 		name: 'login'
 	},
 	{
+		path: '/pages/phoneLogin/phoneLogin',
+		name: 'phoneLogin'
+	},
+	{
 		path: '/pages/registe/registe',
 		name: 'registe'
 	},
