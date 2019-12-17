@@ -14,7 +14,7 @@
 			</view>
 		</view>
 		<view class="sections">
-			<view class="sectiondd" v-for="item in activityList" :key='item.id' @tap="update(item.id)">
+			<view class="sectiondd" v-for="item in activityList" :key='item.id' @tap="update(item)">
 				<image v-for="i in item.gcImgList" :key='i.id' v-if="i.type==3" :src='i.url' style="width: 100%;height:318upx;"></image>
 				<view class="section_header">
 					<h3>名称:{{item.name}}</h3>
@@ -111,7 +111,17 @@
 					}
 					uni.hideLoading();
 				});
-			}
+			},
+			update: function(item) { //编辑活动  活动对象 
+				that.$Router.push({
+					name: 'edit-activity',
+					params: {
+						activityId: item.id,
+						dataName: item.status == 1 ? 'activity_one' : item.status == 2 ? 'activity_two' : item.status == 3 ?
+							'activity_three' : 'activity_four'
+					}
+				})
+			},
 		}
 	}
 </script>

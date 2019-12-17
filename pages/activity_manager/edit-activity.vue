@@ -17,7 +17,6 @@
 				<view class="mode">
 					<image src="../../static/img/02.png" mode=""></image>
 				</view>
-
 				<view class="bgc" @tap="clk(0)">
 					<image v-if="activity[0].url" :src="activity[0].url" mode="scaleToFill" style="width: 750upx; height: 356upx;"></image>
 					<view v-else class="bgcTip">
@@ -27,7 +26,6 @@
 						</view>
 					</view>
 				</view>
-
 				<view class="bottom">
 					<view class="bottom-item">
 						<image src="/static/img/shares.png" mode=""></image>
@@ -91,8 +89,8 @@
 				names: '',
 				activity_bols: false,
 				goodClassId: '',
-				dataName:'',
-				index:0
+				dataName: '',
+				index: ''
 			}
 		},
 		onLoad(options) {
@@ -100,10 +98,11 @@
 			that = this;
 			that.goodClassId = options.activityId
 			that.dataName = options.dataName
-			that.index = options.index
+			options.index?that.index = options.index:''
+			
 			uni.$on('LG', that.LG);
 			// uni.$on('updateModuleInformation',that.updateModuleInformation);//更新组件活动信息
-			
+
 		},
 		beforeDestroy: function() {
 			console.log('销毁');
@@ -114,37 +113,48 @@
 			uni.showLoading({
 				title: '查询中.........'
 			})
+			let searUserBol = true;
 			if (that.goodClassId) {
-				let par = {};
-				par.type = 3;
-				par.goodClassId = that.goodClassId
-				par.orderDescCol = '';
-				par.prderInCol = '';
-				par.which_page = '';
-				par.pageSize = '';
-				par.seqno = 0;
-				//查询封面图
-				searchGcImg(par).then(res => {
-					if (res.info.list.length > 0) {
-						that.activity.splice(0, 1, res.info.list[0]);
-						console.log(that.activity)
-					}
-				}).catch(err => {
-					uni.hideLoading();
-				});
-				searchUsr({}).then(res => {
-					that.activity[1].url = res.info.list[0].imgurl;
-				}).catch(err => {
-					uni.hideLoading();
-				});
 				let parm = {};
 				parm.token = uni.getStorageSync('token');
 				parm.id = that.goodClassId;
+				parm.getDetail=true;
 				searchGoodsClass(parm).then(res => {
-					that.activitys = res.info.list[0];
-					that.names = that.activitys.name;
-					uni.hideLoading();
-				}).catch(err => {
+					if (res.ret == 0) {
+						that.activitys = res.info.list[0];
+						that.names = that.activitys.name;
+						if(res.info.list[0].gcImgList.length>0){
+							res.info.list[0].gcImgList.forEach(item => {
+								if (item.type == 3 && item.seqno == 0) {
+									that.activity.splice(0, 1, item);
+								} else if (item.type == 8 && item.seqno == 0) {
+									searUserBol = false
+									that.activity.splice(1, 1, item);
+								}
+							});
+							if (searUserBol) {
+								searchUsr({}).then(res => { //查询用户头像
+									if (res.ret == 0) {
+										if (res.info.list[0].imgurl) { //在判断用户头像是否存在
+											//将用户头像作为活动的LOGO上传
+											upGcImg(null, {
+												goodClassId: that.goodClassId,
+												type: 8,
+												seqno: 0,
+												url: res.info.list[0].imgurl,
+												noFile: 1
+											}).then(re => {
+												if (re.ret == 0) {
+													that.activity[1].url = res.info.list[0].imgurl;
+												}
+											})
+										}
+							
+									}
+								});
+							}
+						}
+					}
 					uni.hideLoading();
 				});
 			}
@@ -162,37 +172,44 @@
 				if (that.activitys.status == 3) {
 					await that.$utils.show_modal('活动审核已通过,如果编辑内容将需要重新提交审核，请问是否继续?').then(res => {
 						bol = res;
-						if(!res){
+						if (!res) {
 							console.log('进入')
 							return;
 						}
 					});
 				}
-				if (bol ) {
-					let par = {};
-					par.id = that.goodClassId
-					par.status = 4; //编辑状态
-					await Activity_Create(par).then(res => {
-						console.log(res);
-						let title = '';
-						if (res.ret == -1) {
-							title = '修改失败，请稍后重试';
-						} else {
-							title = '修改成功';
-							that.activitys.status = 4;
-							uni.$emit('updateActivity',{id:that.goodClassId,dataName:that.dataName,index:that.index});//调用父级方法修改值
-						}
-						uni.showToast({
-							title: title,
-							icon: 'none',
-							complete: () => {
-								setTimeout(function() {
-									uni.hideToast();
-								}, 1500);
+				if (bol) {
+					if (that.activitys.status != 4) {
+						let par = {};
+						par.id = that.goodClassId
+						par.status = 4; //编辑状态
+						await Activity_Create(par).then(res => {
+							console.log(res);
+							let title = '';
+							if (res.ret == -1) {
+								title = '修改失败，请稍后重试';
+							} else {
+								title = '修改成功';
+								that.activitys.status = 4;
+								uni.$emit('updateActivity', {
+									id: that.goodClassId,
+									dataName: that.dataName,
+									index: that.index?that.index:''
+								}); //调用父级方法修改值
 							}
+							uni.showToast({
+								title: title,
+								icon: 'none',
+								complete: () => {
+									setTimeout(function() {
+										uni.hideToast();
+									}, 1500);
+								}
+							});
 						});
-					});
-				}else if(!bol){
+					}
+
+				} else if (!bol) {
 					return;
 				}
 				if (validation == 1) { //为1则是status值更改为4进行编辑跳转
@@ -225,7 +242,6 @@
 						await delGcImg(pars).then(res => {});
 					}
 				}
-				console.log(par);
 				par.goodClassId = that.goodClassId;
 				await upGcImg(rsp.path, par).then(res => {
 					let title = '';
@@ -237,7 +253,12 @@
 						title = '图片上传成功'
 						that.activity[rsp.index].url = rsp.path;
 						that.activity[rsp.index].id = re.info;
-						uni.$emit('updateActivity',{id:that.goodClassId,dataName:that.dataName,index:that.index});//调用父级方法修改值
+						console.log(that.goodClassId)
+						uni.$emit('updateActivity', {
+							id: that.goodClassId,
+							dataName: that.dataName,
+							index: that.index?that.index:''
+						}); //调用父级方法修改值
 					}
 					uni.showToast({
 						title: title,
@@ -394,9 +415,13 @@
 								title = '修改失败，请稍后重试';
 							} else if (res.retMsg == '记录已存在') {
 								title = '此活动名称已重复，请重新输入';
-							} else if (res.ret == 0){
+							} else if (res.ret == 0) {
 								title = '更改活动名称成功';
-								uni.$emit('updateActivity',{id:that.goodClassId,dataName:that.dataName,index:that.index});//调用父级方法修改值
+								uni.$emit('updateActivity', {
+									id: that.goodClassId,
+									dataName: that.dataName,
+									index: that.index?that.index:''
+								}); //调用父级方法修改值
 							}
 							uni.showToast({
 								title: title,
@@ -435,7 +460,11 @@
 							} else if (res.ret == 0) {
 								title = statu == 2 ? '活动提交审核成功' : statu == 4 ? '活动下线成功' : '活动状态修改成功';
 								that.activitys.status = statu;
-								uni.$emit('updateActivity',{id:that.goodClassId,dataName:that.dataName,index:that.index});//调用父级方法修改值
+								uni.$emit('updateActivity', {
+									id: that.goodClassId,
+									dataName: that.dataName,
+									index: that.index?that.index:''
+								}); //调用父级方法修改值
 							}
 							uni.showToast({
 								title: title,

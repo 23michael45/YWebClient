@@ -56,12 +56,12 @@
 				index: 0,
 				step: true,
 				etep: true,
-				clicktag:0
+				clicktag:0,
+				imgUrl:''
 			}
 		},
 		onLoad: function(options) {
 			that = this;
-			console.log(options)
 			this.type = options.type
 			this.cropperOpt.cut.x = (width - options.width) / 2
 			this.cropperOpt.cut.y = (height - options.height) / 2
@@ -70,6 +70,10 @@
 			this.cropperOpt.pixelRatio = Number(options.pixelRatio) || device.pixelRatio
 			this.fileType = options.fileType || 'png'
 			this.drawing_number = options.drawing_number?options.drawing_number:0
+			//是否存在图片 存在则不调用本地上传,直接裁剪
+			let imgUrl=uni.getStorageSync('imgUrl');
+			this.imgUrl = imgUrl?imgUrl:''
+			uni.removeStorageSync('imgUrl');
 			//裁剪尺寸次数
 			this.tailor_count = options.tailor_count ? JSON.parse(options.tailor_count) : ''
 			this.index = options.index || 0
@@ -98,23 +102,30 @@
 				const self = this;
 				if (!that.step) return;
 				that.step = false
-				uni.chooseImage({
-					count: 1, // 默认9
-					sizeType: ['original', 'compressed'], // 可以指定是原图还是压缩图，默认二者都有
-					sourceType: ['album', 'camera'], // 可以指定来源是相册还是相机，默认二者都有
-					success(res) {
-						const src = res.tempFilePaths[0]
-						if (src) {
-							self.wecropper.pushOrign(src)
-							self.chooseImg = true
-						};
-						uni.hideToast()
-					},
-					fail(res) {
-						uni.hideToast();
-						uni.navigateBack()
-					}
-				})
+				if(that.imgUrl){
+					console.log(that.imgUrl)
+					self.wecropper.pushOrign(that.imgUrl)
+					self.chooseImg = true
+				}else{
+					uni.chooseImage({
+						count: 1, // 默认9
+						sizeType: ['original', 'compressed'], // 可以指定是原图还是压缩图，默认二者都有
+						sourceType: ['album', 'camera'], // 可以指定来源是相册还是相机，默认二者都有
+						success(res) {
+							const src = res.tempFilePaths[0]
+							if (src) {
+								self.wecropper.pushOrign(src)
+								self.chooseImg = true
+							};
+							uni.hideToast()
+						},
+						fail(res) {
+							uni.hideToast();
+							uni.navigateBack()
+						}
+					})
+				}
+				
 			},
 			touchStart(e) {
 				this.wecropper.touchStart(e)

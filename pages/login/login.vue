@@ -16,8 +16,9 @@
 				<input placeholder="请输入密码" v-model="pass" password name="input"></input>
 			</view>
 			<view class="padding">
-				<button class="login-btn cu-btn bg-black" @tap="toRegiste">注册</button>
 				<button @tap="Login" class="login-btn cu-btn bg-black" :disabled="!isTrue" type="">登录</button>
+				<button class="login-btn cu-btn bg-black" @tap="toRegiste">注册</button>
+				
 			</view>
 			
 			<view class="tip">
@@ -96,6 +97,7 @@
 						// if(that.isBack) {
 						// 	that.$Router.back(1)
 						// } else {
+							uni.$off()
 							that.$Router.replaceAll({name:'home'})
 						// }
 					} else {

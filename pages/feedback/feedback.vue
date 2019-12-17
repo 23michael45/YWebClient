@@ -1,6 +1,6 @@
 <template>
 	<view>
-		<cu-custom class="seat" bgColor="bg-white" :isBack="false">
+		<cu-custom class="seat" bgColor="bg-white" :isBack="true">
 			<block slot="backText">返回</block>
 			<block slot="content">功能反馈</block>
 		</cu-custom>
@@ -90,6 +90,9 @@
 					content: '是否将当前信息反馈到平台中',
 					success: function(res) {
 						if (res.confirm) {
+							uni.showLoading({
+								title:'上传中'
+							})
 								//此接口只上传反馈信息不上传图片
 								upHelpMsg('',{
 									type: 2,
@@ -97,6 +100,7 @@
 									mark: that.coupleBack
 								}).then(async res => {
 									if (res.ret == -1) {
+										uni.hideLoading();
 										uni.showToast({
 											title:'反馈信息提交失败,请稍后重试',
 											icon:'none'

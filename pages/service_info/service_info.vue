@@ -7,8 +7,9 @@
 					<text class="text-grey">客服微信二维码：</text>
 				</view>
 				<view class="action logo" @tap="changeImg">
-					<text  class="cuIcon-add add text-grey" v-if="!imgurl"></text>
-					<image v-else :src="imgurl" mode=""></image>
+					<image :src="imgLoad"   mode="aspectFill" style="width: 100%;height: 100%;" v-if="imgLoadBol==false"></image>
+					<text  class="cuIcon-add add text-grey" v-if="!imgurl&&imgLoadBol"></text>
+					<image v-else :src="imgurl"  @load="loadImgs" mode="aspectFill" :style="imgLoadBol?imgCss:'display: none'"></image>
 				</view>
 			</view>
 			<view class="cu-item">
@@ -44,7 +45,10 @@
 				oldImgurl: '',
 				oldName: '',
 				id: '',
-				isEdit: false
+				isEdit: false,
+				imgLoad:'https://yjkj-0508.oss-cn-shenzhen.aliyuncs.com/FAC:23dd7b8c7ac24fa387707054382332f2.gif',//图片加载时动画
+				imgLoadBol:false,//加载完全时判断
+				imgCss:'width: 100%;height: 100%;',//图片样式
 			}
 		},
 		onLoad() {
@@ -53,8 +57,10 @@
 		},
 		methods: {
 			searchService: function() { //查询客服
+				var coid = JSON.parse(uni.getStorageSync('uInfo')).coid
 				searchCommImg({
-					type: 8
+					type: 8,
+					coid: coid
 				}).then(res=>{
 					if(res.ret == 0 && res.info.list.length) {
 						console.log(res)
@@ -102,6 +108,7 @@
 				that.imgurl = ''
 			},
 			changeImg: function() {
+				
 				if(that.isEdit) {
 					uni.showToast({
 					    title: '请点击编辑按钮后修改',
@@ -120,11 +127,15 @@
 				});
 			},
 			addService: function() {//添加客服
+				uni.showLoading({
+					 title: '保存中'
+				})
 				upCommImg(that.imgurl,{
 					type: 8,
 					param1: that.name
 				}).then(res=>{
 					console.log(res)
+					uni.hideLoading()
 					if(JSON.parse(res).ret == 0) {
 						uni.showToast({
 						    title: '保存成功',
@@ -149,10 +160,19 @@
 							
 							resolve(true) 
 						} else {
+							uni.showToast({
+							    title: '保存失败，请重试',
+							    duration: 2000,
+								icon: 'none',
+								mask:true
+							});
 							resolve(false) 
 						}
 					})
 				})
+			},
+			loadImgs:function(){//客服图片加载优化
+				that.imgLoadBol=true;
 			}
 		}
 	}

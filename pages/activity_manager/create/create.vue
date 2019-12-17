@@ -69,7 +69,7 @@
 				}
 				Activity_Create(data).then(res => {
 					if(res.ret == 0) {
-						
+						console.log(res.info);
 						uni.showToast({
 							title: '创建成功',
 							icon: 'none',

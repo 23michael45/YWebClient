@@ -88,6 +88,13 @@
 		newBkUser,
 		login
 	} from '@/axios/index.js'
+	import { JSEncrypt } from '@/js_sdk/jsencrypt'
+	
+	var publicKey = "MIGfMA0GCSqGSIb3DQEBAQUAA4GNADCBiQKBgQDj6PZda698SzzOFEx1ElWe+byydAXoLGlfLR9G" +
+				    "79aJ1p/Tb/rHNvhe2MIq9UwBuipFO0M41LQ0Hb/JRNCHucWD2ta3hEIymc+NuEzCGl2gMpG/M4PK" +
+				    "PQoVtXzFUeV47d2WqPMap2BhUUr82K/NPuVkzHWF7zxjRFL4mLXPGi6KzQIDAQAB";
+			var	crypt = new JSEncrypt();
+				crypt.setPublicKey(publicKey);
 	export default {
 		components: {
 			topBar
@@ -177,7 +184,7 @@
 					ustr: JSON.stringify({
 						ucode: that.ucode,
 						type: 2,
-						pass: that.$JSEncrypt.encrypt(that.pass),
+						pass: crypt.encrypt(that.pass),
 						name:  that.ucode,
 						co: {
 							name: that.name,
@@ -201,7 +208,7 @@
 								setTimeout(()=>{
 									login({
 										ucode: that.ucode,
-										pass: that.$JSEncrypt.encrypt(that.pass),
+										pass: crypt.encrypt(that.pass),
 										type: 2
 									}).then(data=>{
 										console.log(data)
