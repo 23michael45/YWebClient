@@ -281,7 +281,7 @@
 					}
 				})
 			},
-			editGoods: function() { //添加数据
+			editGoods: function() { //编辑数据
 				var edit = JSON.parse(uni.getStorageSync('edit')) 
 				console.log('调用啦')
 				searchGoods({
