@@ -94,7 +94,6 @@
 							}
 						});
 					} else {
-						console.log(res)
 						that.imgurl = that.companyInfo.imgurl 
 						uni.showToast({
 						    title: '更改失败，请重试',
