@@ -79,21 +79,21 @@
 						}
 					}
 				})
-				that.arrData = arr
+				that.arrData = arr.map(o=> Object.assign({},o))
 				// if(b.length) {
-				// 	arr.forEach((el,i)=> {
-				// 		b.forEach((item,index)=>{
-				// 			if(item.id == el.id && item.imgList.length < el.imgList.length) {
-				// 				el.imgList.push({})
-				// 				console.log(el.imgList.length)
-				// 				el.imgList.splice(el.imgList.length - 1 , 1)
-				// 				console.log(el.imgList.length)
-								
-				// 			}
-				// 		})
-				// 	})
+					arr.forEach((el,i)=> {
+						b.forEach((item,index)=>{
+							if(item.id == el.id && item.imgList.length < el.imgList.length) {
+								el.imgList.push({})
+								console.log(el.imgList.length)
+								setTimeout(res=>{
+									
+									el.imgList.splice(el.imgList.length - 1 , 1)
+								},500)
+							}
+						})
+					})
 				// }
-				// console.log(that.arrData)
 				
 			}
 		},

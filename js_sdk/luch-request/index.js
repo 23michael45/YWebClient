@@ -21,12 +21,14 @@ http.validateStatus = (statusCode) => {
 
 
 http.interceptor.request((config, cancel) => {
-	var token = uni.getStorageSync('token')
-	if(config.method == 'UPLOAD') {
-		config.formData.token = token
-	}else {
-		config.params.token = token
-	}
+	
+		var token = uni.getStorageSync('token')
+		if(config.method == 'UPLOAD') {
+			config.formData.token = token
+		}else {
+			config.params.token = token
+		}
+	
 	if(config.url == '/usr/newBkUser' || config.url == '/usr/login') {
 		delete config.params.token
 	}
@@ -60,7 +62,7 @@ http.interceptor.response((response) => {
 				setTimeout(()=>{
 					// app.$Router.push({name:'login',params:{isBack:true}})
 					uni.navigateTo({
-						url: '/pages/login/login'
+						url: '/pages/phoneLogin/phoneLogin'
 					})
 				},2000)
 			}

@@ -343,3 +343,14 @@ export const upHelpMsg = (filePath,formData) => { //功能反馈
 		}
 	})
 }
+
+export const mpEncData  = (params={}) => { //解密商户小程序前端微信加密数据
+	return new Promise((resolve, reject) => {
+		axios.post(url.getMpEncData, {}, {
+			params: params
+		}).then((res) => {
+			resolve(res)
+		})
+
+	})
+}

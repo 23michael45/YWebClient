@@ -25,6 +25,7 @@ const upGcImg  = '/goods/upGcImg'  //上传图片
 const searchUsr  = '/usr/searchUsr'  //查询用户信息
 const idCardCheck  = '/usr/idCardCheck'  //商户负责人实名认证,上传身份证正面带名字那张
 const upHelpMsg  = '/usr/upHelpMsg'  //功能反馈
+const getMpEncData  = '/wx/getMpEncData'  //解密商户小程序前端微信加密数据
 export default {
 	login,
 	nuGoodName,
@@ -49,6 +50,7 @@ export default {
 	upGcImg,
 	updateGcImgInfo,
 	idCardCheck,
-	upHelpMsg
+	upHelpMsg,
+	getMpEncData
 	
 }

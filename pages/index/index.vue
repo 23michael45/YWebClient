@@ -17,7 +17,7 @@
 						<shop-list :list="allList" @edit="toEdit_goods" @del="del" @lower="lowerAll" :scrollHeight="scrollHeight" @isScroll="isScroll"></shop-list>
 						<view v-if="noAllData" class="tip">
 							<image src="../../static/img/nomore.png" mode=""></image>
-							<text>没有更多数据</text>
+							<text>没有上新数据</text>
 						</view>
 					</view>
 				</swiper-item>
@@ -26,14 +26,14 @@
 					 @isScroll="isScroll"></video-list>
 					<view v-if="noVideoData" class="tip">
 						<image src="../../static/img/nomore.png" mode=""></image>
-						<text>没有更多数据</text>
+						<text>没有小视频数据</text>
 					</view>
 				</swiper-item>
 				<swiper-item class="tab-item">
 					<my-atlas :list="atlasList" @toAtlas="toAtlas" @lower="lowerImg" :scrollHeight="scrollHeight" @isScroll="isScroll"></my-atlas>
 					<view v-if="noImgData" class="tip">
 						<image src="../../static/img/nomore.png" mode=""></image>
-						<text>没有更多数据</text>
+						<text>没有图集数据</text>
 					</view>
 				</swiper-item>
 			</swiper>
@@ -271,6 +271,7 @@
 					// uni.hideLoading()
 					console.log(res)
 						that.allList.unshift(res.info.list[0])
+						that.allList =  that.allList.map(o=> Object.assign({},o))
 						that.noAllData = that.allList.length ? false : true
 					if(add.type == 'video') {
 						that.videoList.unshift(res.info.list[0])
@@ -281,7 +282,7 @@
 					}
 				})
 			},
-			editGoods: function() { //添加数据
+			editGoods: function() { //编辑数据
 				var edit = JSON.parse(uni.getStorageSync('edit')) 
 				console.log('调用啦')
 				searchGoods({

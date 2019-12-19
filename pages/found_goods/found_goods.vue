@@ -79,6 +79,7 @@
 							} else {
 								that.imgList = res.tempFilePaths
 							}
+
 						}
 					});
 				} else {
@@ -147,17 +148,19 @@
 					}
 				})
 				if(that.isCanPrivate == 1) { //保存图片商品
+					console.log(1111)
 					var arr = []
 					that.imgList.forEach((el, i) => {
 						arr.push(that.upImg(el, i))
 					})
+					console.log(2222)
 					Promise.all(arr).then((res) => {
 						uni.hideLoading()
 						uni.setStorageSync('add',JSON.stringify({
 							type: 'img',
 							id: that.goodsId
 						}))
-						uni.$emit('addGoods')
+						uni.$emit('getGoods')
 						uni.showToast({
 							title: `保存成功`,
 							duration: 3000,
@@ -178,7 +181,7 @@
 							type: 'video',
 							id: that.goodsId
 						}))
-						uni.$emit('addGoods')
+						uni.$emit('getGoods')
 						uni.showToast({
 							title: `保存成功`,
 							duration: 2000,
@@ -190,7 +193,7 @@
 				}
 			},
 			upImg: function(url, seqno=1) { //上传
-
+				console.log(3333)
 				return new Promise((resolve, reject) => {
 					upGoodsImg(url, {
 						goodsNameId: that.goodsId,

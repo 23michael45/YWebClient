@@ -97,6 +97,7 @@
 						// if(that.isBack) {
 						// 	that.$Router.back(1)
 						// } else {
+							uni.$off()
 							that.$Router.replaceAll({name:'home'})
 						// }
 					} else {
