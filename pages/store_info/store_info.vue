@@ -81,7 +81,13 @@
 					mark: that.companyMark,
 					id: that.companyId
 				}).then(res=>{
-					if(JSON.parse(res).ret == 0) {
+					var data;
+					if(res instanceof Object) {
+						data = res
+					} else {
+						data =JSON.parse(res)
+					}
+					if(data.ret == 0) {
 						uni.$emit('getCompany')
 						uni.showToast({
 						    title: '更改成功',
@@ -94,7 +100,6 @@
 							}
 						});
 					} else {
-						console.log(res)
 						that.imgurl = that.companyInfo.imgurl 
 						uni.showToast({
 						    title: '更改失败，请重试',
