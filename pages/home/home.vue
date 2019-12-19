@@ -62,6 +62,7 @@
 			}
 		},
 		onLoad() {
+			
 			that = this
 			const querys = uni.createSelectorQuery();
 			querys.select('.foot').boundingClientRect((res) => {

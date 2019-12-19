@@ -70,6 +70,13 @@
 			}
 		},
 		{
+			"path": "pages/phoneRegiste/phoneRegiste",
+			"style": {
+				"navigationBarTitleText": "注册",
+				"navigationBarTextStyle": "white"
+			}
+		},
+		{
 			"path": "pages/settings/settings",
 			"style": {
 				"navigationBarTitleText": "设置"
@@ -162,7 +169,7 @@
 	],
 	"globalStyle": {
 		"navigationBarTextStyle": "black",
-		"navigationBarTitleText": "羽迹商家后台",
+		"navigationBarTitleText": "羽迹试试商家版",
 		"navigationBarBackgroundColor": "#F8F8F8",
 		"backgroundColor": "#F8F8F8",
 		"navigationStyle": "custom"
