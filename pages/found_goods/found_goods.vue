@@ -74,11 +74,24 @@
 						sizeType: ['compressed'], //可以指定是原图还是压缩图，默认二者都有
 						sourceType: ['camera', 'album'], //从相册选择
 						success: (res) => {
-							if (that.imgList.length != 0) {
-								that.imgList = that.imgList.concat(res.tempFilePaths)
-							} else {
-								that.imgList = res.tempFilePaths
-							}
+							uni.getImageInfo({
+								src:res.tempFilePaths[0],
+								success:function(e){
+									if (that.imgList.length != 0) {
+										that.imgList = that.imgList.concat(res.tempFilePaths)
+									} else {
+										that.imgList = res.tempFilePaths
+									}
+								},
+								fail:function(e){
+									uni.showToast({
+										title:'不支持当前格式图片上传,请挑选其余图片',
+										icon:'none'
+									})
+									return;
+								}
+							})
+							
 
 						}
 					});

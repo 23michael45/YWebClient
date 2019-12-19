@@ -61,6 +61,13 @@
 		},
 		methods: {
 			onConfirm: function(e) {
+				if(!e[0].content){
+					uni.showToast({
+						title:'请输入活动名',
+						icon:'none'
+					})
+					return;
+				}
 				var data = {
 					name: e[0].content,
 					type: 2,

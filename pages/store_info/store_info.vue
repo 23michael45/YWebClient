@@ -81,7 +81,7 @@
 					mark: that.companyMark,
 					id: that.companyId
 				}).then(res=>{
-					if(JSON.parse(res).ret == 0) {
+					if(res.ret == 0) {
 						uni.$emit('getCompany')
 						uni.showToast({
 						    title: '更改成功',
