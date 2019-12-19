@@ -69,7 +69,6 @@
 		methods: {
 			ChooseImage() { //选择素材
 				if (that.isCanPrivate == 1) {
-
 					uni.chooseImage({
 						count: 8,
 						sizeType: ['compressed'], //可以指定是原图还是压缩图，默认二者都有
@@ -88,15 +87,6 @@
 						sourceType: ['camera', 'album'],
 						maxDuration: 15,
 						success: function(res) {
-							console.log(res)
-							// if(res.duration > 15) {
-							// 	uni.showToast({
-							// 		title: `视频时长不能大于15秒`,
-							// 		duration: 2000,
-							// 		icon: 'none'
-							// 	});
-							// 	return false;
-							// }
 							that.videoList = [res.tempFilePath];
 							console.log(that.videoList)
 						}

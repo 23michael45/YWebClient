@@ -1,9 +1,6 @@
 <template>
 	<view>
-		<cu-custom class="seat" bgColor="bg-white" :isBack="true">
-			<block slot="backText">返回</block>
-			<block slot="content">功能反馈</block>
-		</cu-custom>
+		<cu-custom class="seat" bgColor="bg-white" :isBack="true"><block slot="backText">返回</block><block slot="content">功能反馈</block></cu-custom>
 		<view class="section">
 			<view class="cu-bar bg-white margin-top heaeds">
 				<h3 class='wenti'>问题和意见描述</h3>

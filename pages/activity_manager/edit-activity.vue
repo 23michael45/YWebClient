@@ -15,7 +15,7 @@
 					<view v-else class="upload-logo">LOGO</view>
 				</view>
 				<view class="mode">
-					<image src="../../static/img/02.png" mode=""></image>
+					<image :src="activitys.subType==1?'/static/img/01.png':'/static/img/02.png'" mode=""></image>
 				</view>
 				<view class="bgc" @tap="clk(0)">
 					<image v-if="activity[0].url" :src="activity[0].url" mode="scaleToFill" style="width: 750upx; height: 356upx;"></image>
@@ -99,10 +99,7 @@
 			that.goodClassId = options.activityId
 			that.dataName = options.dataName
 			options.index?that.index = options.index:''
-			
 			uni.$on('LG', that.LG);
-			// uni.$on('updateModuleInformation',that.updateModuleInformation);//更新组件活动信息
-
 		},
 		beforeDestroy: function() {
 			console.log('销毁');
@@ -122,6 +119,7 @@
 				searchGoodsClass(parm).then(res => {
 					if (res.ret == 0) {
 						that.activitys = res.info.list[0];
+						console.log(that.activitys);
 						that.names = that.activitys.name;
 						if(res.info.list[0].gcImgList.length>0){
 							res.info.list[0].gcImgList.forEach(item => {

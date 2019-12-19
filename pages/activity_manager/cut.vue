@@ -13,7 +13,7 @@
 					<view @tap='cancleCropper'>取消</view>
 					<view>
 					</view>
-					<view @tap.once="getCropperImage" >确定</view>
+					<view @tap.once="getCropperImage">确定</view>
 				</view>
 			</view>
 		</view>
@@ -56,8 +56,8 @@
 				index: 0,
 				step: true,
 				etep: true,
-				clicktag:0,
-				imgUrl:''
+				clicktag: 0,
+				imgUrl: ''
 			}
 		},
 		onLoad: function(options) {
@@ -69,10 +69,10 @@
 			this.cropperOpt.cut.height = Number(options.height)
 			this.cropperOpt.pixelRatio = Number(options.pixelRatio) || device.pixelRatio
 			this.fileType = options.fileType || 'png'
-			this.drawing_number = options.drawing_number?options.drawing_number:0
+			this.drawing_number = options.drawing_number ? options.drawing_number : 0
 			//是否存在图片 存在则不调用本地上传,直接裁剪
-			let imgUrl=uni.getStorageSync('imgUrl');
-			this.imgUrl = imgUrl?imgUrl:''
+			let imgUrl = uni.getStorageSync('imgUrl');
+			this.imgUrl = imgUrl ? imgUrl : ''
 			uni.removeStorageSync('imgUrl');
 			//裁剪尺寸次数
 			this.tailor_count = options.tailor_count ? JSON.parse(options.tailor_count) : ''
@@ -95,18 +95,18 @@
 				.on('imageLoad', (ctx) => {
 					uni.hideToast()
 				})
-			this.chooseImgs();//调用裁剪框的选择图片方法
+			this.chooseImgs(); //调用裁剪框的选择图片方法
 		},
 		methods: {
 			chooseImgs() {
 				const self = this;
 				if (!that.step) return;
 				that.step = false
-				if(that.imgUrl){
+				if (that.imgUrl) {
 					console.log(that.imgUrl)
 					self.wecropper.pushOrign(that.imgUrl)
 					self.chooseImg = true
-				}else{
+				} else {
 					uni.chooseImage({
 						count: 1, // 默认9
 						sizeType: ['original', 'compressed'], // 可以指定是原图还是压缩图，默认二者都有
@@ -114,10 +114,29 @@
 						success(res) {
 							const src = res.tempFilePaths[0]
 							if (src) {
-								self.wecropper.pushOrign(src)
-								self.chooseImg = true
+								uni.getImageInfo({
+									src: src,
+									success: function(image) {
+										self.wecropper.pushOrign(src)
+										self.chooseImg = true
+										uni.hideToast()
+									},
+									fail: function(err) {
+										uni.hideToast()
+										uni.showToast({
+											title: '当前图片文件类型格式不符合,请重新上传',
+											icon: 'none',
+											position: 'top',
+											complete: function() {
+												setTimeout(function(){
+													uni.hideToast()
+													that.cancleCropper();
+												},1500);
+											}
+										})
+									}
+								})
 							};
-							uni.hideToast()
 						},
 						fail(res) {
 							uni.hideToast();
@@ -125,7 +144,7 @@
 						}
 					})
 				}
-				
+
 			},
 			touchStart(e) {
 				this.wecropper.touchStart(e)
@@ -138,12 +157,12 @@
 			},
 			// 获取裁剪后的图片
 			getCropperImage() {
-				console.log('确认按钮进入判断值为:'+that.etep)
-				if (!that.etep){
+				console.log('确认按钮进入判断值为:' + that.etep)
+				if (!that.etep) {
 					return;
-				} 
+				}
 				that.etep = false;
-				console.log('确认按钮判断值为:'+that.etep)
+				console.log('确认按钮判断值为:' + that.etep)
 				if (this.chooseImg) {
 					uni.showLoading({
 						title: '正在截图中...'
@@ -177,7 +196,7 @@
 												}
 												uni.hideLoading();
 												that.list.splice(0, that.list.length, li);
-												that.etep=true;//上传完数据后修改此状态值
+												that.etep = true; //上传完数据后修改此状态值
 												uni.$emit(that.type, that.list);
 												uni.navigateBack();
 											}
@@ -190,7 +209,7 @@
 									uni.hideLoading();
 									that.list.splice(0, that.list.length, li);
 									uni.$emit(that.type, that.list);
-									that.etep=true;//上传完数据后修改此状态值
+									that.etep = true; //上传完数据后修改此状态值
 									uni.navigateBack();
 								}
 							} else {
@@ -224,7 +243,7 @@
 				}
 				let arry = JSON.stringify(that.list);
 				uni.hideLoading();
-				that.etep=true;
+				that.etep = true;
 				uni.$emit(that.type, arry);
 				uni.navigateBack();
 			},
@@ -260,7 +279,7 @@
 				uni.hideToast()
 				uni.navigateBack()
 			},
-			
+
 
 		}
 	}

@@ -12,21 +12,8 @@
 						<text class="cuIcon-search"></text>
 						<input :adjust-position="false" type="text" placeholder="搜索活动" confirm-type="search" v-model="seos"></input>
 					</view>
-					<view class="action" v-if='search_box'>
+					<view class="action" >
 						<button class="cu-btn bg-green shadow-blur round" @tap="query_seo">搜索</button>
-					</view>
-					<view class="action" v-else>
-						<view class="uni-list-cell">
-							<view class="uni-list-cell-left">
-
-							</view>
-							<view class="uni-list-cell-db">
-								<picker @change="bindPickerChange" :value="index" :range="array" style="">
-									<view class="uni-input">{{array[index]}}
-										<text class="cuIcon-triangledownfill"></text></view>
-								</picker>
-							</view>
-						</view>
 					</view>
 				</view>
 				<view class="bg-white nav text-center">
@@ -37,12 +24,14 @@
 					<view class="cu-item creates" @tap="create">创建活动</view>
 				</view>
 			</view>
-			<swiper class="swiper" :style="'height:'+ scrollHeight + 'px;margin-top:' +  topHeight + 'px'" @change='swiperChoice'
-			 :current="swiperCurrentIndex">
+			<swiper class="swiper" :style="'height:'+ scrollHeight + 'px;margin-top:' +  topHeight + 'px'" @change='swiperChoice' :current="swiperCurrentIndex">
 				<swiper-item>
 					<scroll-view class="" :style="'height:'+ scrollHeight + 'px;'" @scrolltolower='scrollChoiceOne'>
-						<view class="sectiondd" v-for="(item,index) in activity_one" wx:key='item.id' :key='item.id' @tap="update(item.id,'activity_one',index)">
-							<image v-for="i in item.gcImgList" :key='i.id' v-if="i.type==3" :src='i.url' style="width: 100%;height:318upx;"></image>
+						<view class="sectiondd" v-for="(item,index) in activity_one"  :key='item.id' @tap="update(item.id,'activity_one',index)">
+							<view class="mode">
+								<image :src="item.subType==1?'/static/img/01.png':'/static/img/02.png'" mode=""></image>
+							</view>
+							<image v-for="i in item.gcImgList" :key='i.id' v-if="i.type==3" :src='i.url' style="width: 750upx; height:315upx;" mode="aspectFill"></image>
 							<view class="section_header">
 								<h3>名称:{{item.name}}</h3>
 								<h3>访问:{{item.activity_upCnt?item.activity_upCnt:0}}</h3>
@@ -61,7 +50,10 @@
 				<swiper-item>
 					<scroll-view class="" :style="'height:'+ scrollHeight + 'px;'" @scrolltolower='scrollChoiceTwo'>
 						<view class="sectiondd" v-for="(item,index) in activity_two" :key='item.id' @tap="update(item.id,'activity_two',index)">
-							<image v-for="i in item.gcImgList" :key='i.id' v-if="i.type==3" :src='i.url' style="width: 100%;height:318upx;"></image>
+							<view class="mode">
+								<image :src="item.subType==1?'/static/img/01.png':'/static/img/02.png'" mode=""></image>
+							</view>
+							<image v-for="i in item.gcImgList" :key='i.id' v-if="i.type==3" :src='i.url' style="width: 750upx;height:315upx;"></image>
 							<view class="section_header">
 								<h3>名称:{{item.name}}</h3>
 								<h3>访问:{{item.activity_upCnt?item.activity_upCnt:0}}</h3>
@@ -80,7 +72,10 @@
 				<swiper-item>
 					<scroll-view :style="'height:'+ scrollHeight + 'px;'" @scrolltolower='scrollChoiceThree'>
 						<view class="sectiondd" v-for="(item,index) in activity_three" :key='item.id' @tap="update(item.id,'activity_three',index)">
-							<image v-for="i in item.gcImgList" :key='i.id' v-if="i.type==3" :src='i.url' style="width: 100%;height:318upx;"></image>
+							<view class="mode">
+								<image :src="item.subType==1?'/static/img/01.png':'/static/img/02.png'" mode=""></image>
+							</view>
+							<image v-for="i in item.gcImgList" :key='i.id' v-if="i.type==3" :src='i.url' style="width: 750upx;height:315upx;"></image>
 							<view class="section_header">
 								<h3>名称:{{item.name}}</h3>
 								<h3>访问:{{item.activity_upCnt?item.activity_upCnt:0}}</h3>
@@ -97,9 +92,12 @@
 					</scroll-view>
 				</swiper-item>
 				<swiper-item>
-					<scroll-view scroll-y :style="'height:'+ scrollHeight + 'px;'" @scrolltolower='scrollChoiceFour'>
-						<view class="sectiondd" v-for="(item,index) in activity_four" :key='item.id' @tap="update(item.id,'activity_four',index)">
-							<image v-for="i in item.gcImgList" :key='i.id' v-if="i.type==3" :src='i.url' style="width: 100%;height:318upx;"></image>
+					<scroll-view scroll-y class="" :style="'height:'+ scrollHeight + 'px;'" @scrolltolower='scrollChoiceFour'>
+						<view class="sectiondd" v-for="(item,index) in activity_four"  :key='item.id' @tap="update(item.id,'activity_four',index)">
+							<view class="mode">
+								<image :src="item.subType==1?'/static/img/01.png':'/static/img/02.png'" mode=""></image>
+							</view>
+							<image v-for="i in item.gcImgList" :key='i.id' v-if="i.type==3" :src='i.url' style="width: 750upx; height:315upx;" mode="aspectFill"></image>
 							<view class="section_header">
 								<h3>名称:{{item.name}}</h3>
 								<h3>访问:{{item.activity_upCnt?item.activity_upCnt:0}}</h3>
@@ -138,17 +136,13 @@
 				CustomBar: this.CustomBar,
 				scrollHeight: '',
 				topHeight: '',
-				array: ['平面活动', '视频活动'],
 				list: ['运营中', '审核中', '可发布', '编辑中'],
-				index: 0,
 				activity_one: [],
 				activity_two: [],
 				activity_three: [],
 				activity_four: [],
 				//默认状态
 				status: 1,
-				//子分类状态  1.图片活动 2视频活动
-				subType: 1,
 				query_status: true,
 				search_box: false,
 				//模糊查询字段
@@ -170,9 +164,6 @@
 
 			}
 		},
-		onLoad() {
-			console.log('sss')
-		},
 		mounted() {
 			that = this
 			const query = uni.createSelectorQuery().in(that);
@@ -185,13 +176,8 @@
 			that.init(1, 10, 3, 'activity_three');
 			that.init(1, 10, 4, 'activity_four');
 		},
-		watch: {
-			seos: function(a) {
-				that.search_box = a ? true : false
-			}
-		},
 		methods: {
-			scrollChoiceOne: function() { //底部查询
+			scrollChoiceOne: function() { //上线活动拉取底部查询
 				if (that.loadOne) {
 					return;
 				}
@@ -208,7 +194,7 @@
 					this.loadOne = true;
 				}
 			},
-			scrollChoiceTwo: function() { //底部查询
+			scrollChoiceTwo: function() { //审核中活动拉取底部查询
 				if (that.loadTwo) {
 					return;
 				}
@@ -225,7 +211,7 @@
 					this.loadTwo = true;
 				}
 			},
-			scrollChoiceThree: function() { //底部查询
+			scrollChoiceThree: function() { //可发布活动拉取底部查询
 				if (that.loadThree) {
 					return;
 				}
@@ -242,7 +228,7 @@
 					this.loadThree = true;
 				}
 			},
-			scrollChoiceFour: function() { //底部查询
+			scrollChoiceFour: function() { //编辑中活动拉取底部查询
 				if (that.loadFour) {
 					return;
 				}
@@ -260,7 +246,6 @@
 				}
 			},
 			update: function(id, dataName, index) { //编辑活动  活动ID 参数名  活动在数组下的下标
-				console.log(dataName);
 				that.$Router.push({
 					name: 'edit-activity',
 					params: {
@@ -270,12 +255,6 @@
 					}
 				})
 			},
-			/**
-			 * @param {Object} e
-			 * TODO 12.5日完成监听回调修改
-			 * 根据type找到对应数组修改数据
-			 * 然后将其从对应数组删除并且查询一遍
-			 */
 			OnshowInit: function(e) { //修改属性值
 				if (e.dataName) {
 					if(e.index){//判断index是否存在
@@ -318,7 +297,6 @@
 				searchGoodsClass({
 					getDetail: true,
 					type: 2,
-					subType: that.subType,
 					which_page: which_page,
 					pageSize: page_size,
 					status: status,
@@ -338,15 +316,12 @@
 							that.Fourpage_end = res.info.pageInfo.page_end;
 							that.Fourwhich_page = res.info.pageInfo.which_page;
 						}
-						await that.sortList(res.info.list, status_name)
-						// that.querySts(status_name);
-						console.log(that[status_name])
+						await that.sortList(res.info.list, status_name);//插入
 					}
 				});
 			},
 			sortList: function(list, status_name) { //图片数据分组
 				return new Promise((resolve, reject) => {
-					console.log('添加1' + status_name)
 					for (let i = 0; i < list.length; i++) {
 						that[status_name].push(list[i]);
 					}
@@ -390,16 +365,6 @@
 					name: 'create-activity'
 				})
 			},
-			bindPickerChange: function(e) { //右上角下拉选择标签切换
-				that.activityInit().then(res => {
-					that.index = e.target.value;
-					that.subType = parseInt(e.target.value) + 1;
-					that.init(1, 10, 1, 'activity_one');
-					that.init(1, 10, 2, 'activity_two');
-					that.init(1, 10, 3, 'activity_three');
-					that.init(1, 10, 4, 'activity_four');
-				});
-			},
 			tabSelect: function(index) { //标签栏选择切换
 				that.swiperCurrentIndex = index
 			},
@@ -409,7 +374,6 @@
 			query_seo: function() { //搜索框模糊查询
 				//跳转查询列表页面 带上模糊查询的值
 				if (that.seos) {
-					console.log('存在值')
 					that.$Router.push({
 						name: 'activityQuery',
 						params: {

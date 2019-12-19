@@ -121,6 +121,9 @@
 		onLoad() {
 			that = this
 		},
+		/**
+		 * 12.17日  TODO 修改注册页面为手机登录且co对象中name--商品名是必须的
+		 */
 		methods: {
 			agree: function() {
 				that.isAgree = true

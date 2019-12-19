@@ -67,16 +67,27 @@ search .bg-white {
 }
 
 .sectiondd {
-	width: 100%;
 	height: 318upx;
+	margin: 0 auto;
 	margin-top: 10upx;
 	position: relative;
-	border-radius: 5upx;
+	/* border-radius: 30upx ; */
+	width: 95%;
+	/* border: 1px solid red; */
+
 	/* display: flex;
 	flex-direction: column;
 	justify-content: space-between; */
 }
-
+.sectiondd image{
+	border-radius:15upx;
+}
+.sectiondd .section_footer{
+	border-radius: 0 0 15upx 15upx;
+}
+.sectiondd .section_header{
+	border-radius: 15upx 15upx 0 0;
+}
 .section_header {
 	height: 64upx;
 	width: 100%;
@@ -89,6 +100,7 @@ search .bg-white {
 	display: flex;
 	align-items: center;
 	justify-content: space-around;
+	
 }
 
 .section_footer {
@@ -99,12 +111,25 @@ search .bg-white {
 	opacity: 0.5;
 	font-size: 32upx;
 	position: absolute;
-	bottom: 0;
+	
+	bottom: 2upx;
 	display: flex;
 	align-items: center;
 	justify-content: space-around;
 }
-
+.sectiondd .mode {
+	position: absolute;
+	top: 0;
+	right: 30upx;
+	width: 40upx;
+	height: 80upx;
+	z-index: 99
+}
+.sectiondd .mode image {
+	width: 100%;
+	height: 100%;
+	border-radius: 0;
+}
 .update {
 	width: 108upx;
 	height: 38upx;

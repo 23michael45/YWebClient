@@ -15,6 +15,9 @@
 		</view>
 		<view class="sections">
 			<view class="sectiondd" v-for="item in activityList" :key='item.id' @tap="update(item)">
+				<view class="mode">
+					<image :src="item.subType==1?'/static/img/01.png':'/static/img/02.png'" mode=""></image>
+				</view>
 				<image v-for="i in item.gcImgList" :key='i.id' v-if="i.type==3" :src='i.url' style="width: 100%;height:318upx;"></image>
 				<view class="section_header">
 					<h3>名称:{{item.name}}</h3>
