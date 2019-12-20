@@ -32,6 +32,10 @@
 					<h3 class='update'>编辑</h3>
 				</view>
 			</view>
+			<view  class="tip"  v-if="activityList.length<=0">
+				<image src="/static/img/nomore.png" mode=""></image>
+				<text>没有活动数据</text>
+			</view>
 		</view>
 	</view>
 </template>
@@ -129,6 +133,9 @@
 	}
 </script>
 
-<style>
-	@import url(css/Activity_Manager);
+<style scoped lang="less">
+	@import url('./css/Activity_Manager.less');
+	.tip{
+		margin-top: 250upx;
+	}
 </style>

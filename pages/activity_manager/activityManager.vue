@@ -45,6 +45,10 @@
 								<h3 class='update'>编辑</h3>
 							</view>
 						</view>
+						<view  class="tip"  v-if="activity_one.length<=0">
+							<image src="/static/img/nomore.png" mode=""></image>
+							<text>没有活动数据</text>
+						</view>
 					</scroll-view>
 				</swiper-item>
 				<swiper-item>
@@ -67,11 +71,15 @@
 								<h3 class='update' @tap="update(item.id)">编辑</h3>
 							</view>
 						</view>
+						<view  class="tip"  v-if="activity_two.length<=0">
+							<image src="/static/img/nomore.png" mode=""></image>
+							<text>没有活动数据</text>
+						</view>
 					</scroll-view>
 				</swiper-item>
 				<swiper-item>
 					<scroll-view :style="'height:'+ scrollHeight + 'px;'" @scrolltolower='scrollChoiceThree'>
-						<view class="sectiondd" v-for="(item,index) in activity_three" :key='item.id' @tap="update(item.id,'activity_three',index)">
+						<view class="sectiondd" v-for="(item,index) in activity_three" :key='item.id' @tap="update(item.id,'activity_three',index)" >
 							<view class="mode">
 								<image :src="item.subType==1?'/static/img/01.png':'/static/img/02.png'" mode=""></image>
 							</view>
@@ -88,6 +96,10 @@
 								<h3>收藏:{{}}</h3>
 								<h3 class='update'>编辑</h3>
 							</view>
+						</view>
+						<view  class="tip"  v-if="activity_three.length<=0">
+							<image src="/static/img/nomore.png" mode=""></image>
+							<text>没有活动数据</text>
 						</view>
 					</scroll-view>
 				</swiper-item>
@@ -110,6 +122,10 @@
 								<h3>收藏:{{}}</h3>
 								<h3 class='update'>编辑</h3>
 							</view>
+						</view>
+						<view  class="tip"  v-if="activity_four.length<=0">
+							<image src="/static/img/nomore.png" mode=""></image>
+							<text>没有活动数据</text>
 						</view>
 					</scroll-view>
 				</swiper-item>
@@ -160,8 +176,7 @@
 				loadOne: false,
 				loadTwo: false,
 				loadThree: false,
-				loadFour: false,
-
+				loadFour: false
 			}
 		},
 		mounted() {
@@ -418,15 +433,15 @@
 		}
 	}
 </script>
-<style scoped>
-	@import url(css/Activity_Manager);
+<style scoped lang="less">
+	@import url('./css/Activity_Manager.less');
 
-	uni-page-body {
-		height: 100%;
-	}
+	// uni-page-body {
+	// 	height: 100%;
+	// }
 
-	uni-page-body>view:nth-of-type(1) {
-		height: 100%;
-		position: relative;
-	}
+	// uni-page-body>view:nth-of-type(1) {
+	// 	height: 100%;
+	// 	position: relative;
+	// }
 </style>

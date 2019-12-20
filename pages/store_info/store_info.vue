@@ -65,7 +65,7 @@
 					if(res.ret == 0) {
 						that.companyInfo = res.info.list[0]
 						that.companyName = that.companyInfo.name
-						that.companyMark = that.companyInfo.mark
+						that.companyMark = that.companyInfo.mark?that.companyInfo.mark:''
 						that.companyId = that.companyInfo.id
 						that.imgurl = that.companyInfo.imgurl
 					}

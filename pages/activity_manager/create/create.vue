@@ -61,10 +61,10 @@
 		},
 		methods: {
 			onConfirm: function(e) {
-				if(!e[0].content){
+				if (!e[0].content) {
 					uni.showToast({
-						title:'请输入活动名',
-						icon:'none'
+						title: '请输入活动名',
+						icon: 'none'
 					})
 					return;
 				}
@@ -75,88 +75,93 @@
 					status: 4
 				}
 				Activity_Create(data).then(res => {
-					if(res.ret == 0) {
-						console.log(res.info);
+					if (res.ret == 0) {
 						uni.showToast({
 							title: '创建成功',
 							icon: 'none',
 							duration: 1500,
-							mask:true,
+							mask: true,
 							success() {
 								setTimeout(ress => {
-									
 									that.$Router.push({
 										name: 'edit-activity',
 										params: {
 											activityId: res.info,
-											Oninit:true
+											Oninit: true
 										}
 									})
-								},1500)
+								}, 1500)
 							}
 						});
 					} else {
-						
-						let title = '';
+
 						if (res.retMsg == '记录已存在') {
-							title = '活动名称重复,请重新输入'
+							uni.showToast({
+								title: '活动名称重复,请重新输入',
+								icon: 'none',
+								mask: true,
+								duration: 3000,
+								complete: () => {
+									setTimeout(function() {
+										uni.hideToast();
+									}, 3000);
+								}
+							});
 						} else if (res.retMsg == 'USR_CHECK_NO_PASS_ERR') {
-							title = '用户还未实名，不允许创建活动，请先实名认证在重试'
+							uni.showModal({
+								title: '提示',
+								content: '用户还未实名,不允许创建,是否跳转页面进行实名?',
+								success: function(res) {
+									if (res.confirm) {
+										that.$Router.push({
+											name: 'updateUser',
+											params: {
+												id: JSON.parse(uni.getStorageSync('uInfo')).coid
+											}
+										})
+									}
+								}
+							});
 						}
-						uni.showToast({
-							title: title ? title : res.retMsg,
-							icon: 'none',
-							mask:true,
-							duration: 3000,
-							success: () => {
-								setTimeout(function() {
-									uni.hideToast();
-								}, 3000);
-							},
-							fail: () => {
-								setTimeout(function() {
-									uni.hideToast();
-								}, 3000);
-							}
-						});
+
 					}
 				})
-			// 	this.$https(config.Activity_Create, data, 'POST', undefined, undefined).then(res => {
+				// 	this.$https(config.Activity_Create, data, 'POST', undefined, undefined).then(res => {
 
-			// 		uni.showToast({
-			// 			title: '创建成功',
-			// 			icon: 'none'
-			// 		});
-			// 		that.$Router.push({
-			// 			name: 'edit-activity',
-			// 			params: {
-			// 				activityId: res.data.info
-			// 			}
-			// 		})
+				// 		uni.showToast({
+				// 			title: '创建成功',
+				// 			icon: 'none'
+				// 		});
+				// 		that.$Router.push({
+				// 			name: 'edit-activity',
+				// 			params: {
+				// 				activityId: res.data.info
+				// 			}
+				// 		})
 
-			// 	}).catch(err => {
-			// 		let title = '';
-			// 		if (err.retMsg == '记录已存在') {
-			// 			title = '活动名称重复,请重新输入'
-			// 		} else if (err.retMsg == 'USR_CHECK_NO_PASS_ERR') {
-			// 			title = '用户还未实名，不允许创建活动，请先实名认证在重试'
-			// 		}
-			// 		uni.showToast({
-			// 			title: title ? title : err.retMsg,
-			// 			icon: 'none',
-			// 			duration: 1500,
-			// 			success: () => {
-			// 				setTimeout(function() {
-			// 					uni.hideToast();
-			// 				}, 1500);
-			// 			},
-			// 			fail: () => {
-			// 				setTimeout(function() {
-			// 					uni.hideToast();
-			// 				}, 1500);
-			// 			}
-			// 		});
-			// 	});
+				// 	}).catch(err => {
+				// 		let title = '';
+				// 		if (err.retMsg == '记录已存在') {
+				// 			title = '活动名称重复,请重新输入'
+				// 		} else if (err.retMsg == 'USR_CHECK_NO_PASS_ERR') {
+				// 			title = '用户还未实名，不允许创建活动，请先实名认证在重试'
+				// 		}
+				// 		uni.showToast({
+				// 			title: title ? title : err.retMsg,
+				// 			icon: 'none',
+				// 			duration: 1500,
+				// 			success: () => {
+				// 				setTimeout(function() {
+				// 					uni.hideToast();
+				// 				}, 1500);
+				// 			},
+				// 			fail: () => {
+				// 				setTimeout(function() {
+				// 					uni.hideToast();
+				// 				}, 1500);
+				// 			}
+				// 		});
+				// 	});
 			},
 			create(subType) {
 				this.subType = subType; //创建的活动属性什么类型 视频 平面
