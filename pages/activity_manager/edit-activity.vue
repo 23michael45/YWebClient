@@ -91,7 +91,8 @@
 				activity_bols: false,
 				goodClassId: '',
 				dataName: '',
-				index: ''
+				index: '',
+				Oninit:false
 			}
 		},
 		onLoad(options) {
@@ -99,7 +100,8 @@
 			that = this;
 			that.goodClassId = options.activityId
 			that.dataName = options.dataName
-			options.index?that.index = options.index:''
+			options.index ? that.index = options.index : ''
+			options.Oninit ? that.Oninit = options.Oninit : that.Oninit = false
 			uni.$on('LG', that.LG);
 		},
 		beforeDestroy: function() {
@@ -116,23 +118,36 @@
 				let parm = {};
 				parm.token = uni.getStorageSync('token');
 				parm.id = that.goodClassId;
-				parm.getDetail=true;
+				parm.getDetail = true;
 				searchGoodsClass(parm).then(res => {
 					if (res.ret == 0) {
 						that.activitys = res.info.list[0];
-						console.log(that.activitys);
+						if(that.Oninit){//是否是创建页面进来的数据
+							uni.$emit('updateActivity', {
+								id: that.goodClassId,
+								dataName: that.dataName,
+								index: that.index ? that.index : ''
+							}); //调用父级方法修改值
+						}
 						that.names = that.activitys.name;
-						if(res.info.list[0].gcImgList.length>0){
+						if (res.info.list[0].gcImgList.length > 0) {
 							res.info.list[0].gcImgList.forEach(item => {
 								if (item.type == 3 && item.seqno == 0) {
 									that.activity.splice(0, 1, item);
-								} else if (item.type == 8 ) {
-									searUserBol = false
+								} else if (item.type == 8) {
+									uni.getImageInfo({
+										src: item.url,
+										success: function(image) {
+											searUserBol = false
+										},
+										fail:function(err){
+										}
+									});
 									that.activity.splice(1, 1, item);
 								}
 							});
 							that.updateUserLogo(searUserBol);
-						}else{
+						} else {
 							that.updateUserLogo(searUserBol);
 						}
 					}
@@ -141,19 +156,19 @@
 			}
 		},
 		methods: {
-			updateUserLogo:function(searUserBol){
+			updateUserLogo: function(searUserBol) {
 				if (searUserBol) {
-					searchCompany({//查询店铺LOGO
+					searchCompany({ //查询店铺LOGO
 						id: JSON.parse(uni.getStorageSync('uInfo')).coid
 					}).then(r => {
 						if (r.ret == 0) {
-							if(r.info.list[0].imgurl){
+							if (r.info.list[0].imgurl) {
 								//将用户头像作为活动的LOGO上传
 								upGcImg(null, {
 									goodClassId: that.goodClassId,
 									type: 8,
 									seqno: 0,
-									url:r.info.list[0].imgurl,
+									url: r.info.list[0].imgurl,
 									noFile: 1
 								}).then(re => {
 									if (re.ret == 0) {
@@ -199,7 +214,7 @@
 								uni.$emit('updateActivity', {
 									id: that.goodClassId,
 									dataName: that.dataName,
-									index: that.index?that.index:''
+									index: that.index ? that.index : ''
 								}); //调用父级方法修改值
 							}
 							uni.showToast({
@@ -262,7 +277,7 @@
 						uni.$emit('updateActivity', {
 							id: that.goodClassId,
 							dataName: that.dataName,
-							index: that.index?that.index:''
+							index: that.index ? that.index : ''
 						}); //调用父级方法修改值
 					}
 					uni.showToast({
@@ -425,7 +440,7 @@
 								uni.$emit('updateActivity', {
 									id: that.goodClassId,
 									dataName: that.dataName,
-									index: that.index?that.index:''
+									index: that.index ? that.index : ''
 								}); //调用父级方法修改值
 							}
 							uni.showToast({
@@ -468,7 +483,7 @@
 								uni.$emit('updateActivity', {
 									id: that.goodClassId,
 									dataName: that.dataName,
-									index: that.index?that.index:''
+									index: that.index ? that.index : ''
 								}); //调用父级方法修改值
 							}
 							uni.showToast({

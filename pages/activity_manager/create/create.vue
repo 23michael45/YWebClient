@@ -88,7 +88,8 @@
 									that.$Router.push({
 										name: 'edit-activity',
 										params: {
-											activityId: res.info
+											activityId: res.info,
+											Oninit:true
 										}
 									})
 								},1500)
