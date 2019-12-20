@@ -4,40 +4,40 @@
 			<block slot="backText">返回</block>
 			<block slot="content">实名认证</block>
 		</cu-custom>
-		<view class="headerss">
-			<h2>拍摄上传您的本人身份证信息页</h2>
-		</view>
-		<view class="section">
-			<view class="left">
-				<image class='lefts' :src='charter' mode="aspectFit" @tap="previewImage(charter)"></image>
+		
+		<view  >
+			<view class="headerss">
+				<h2>拍摄上传您的本人身份证信息页</h2>
 			</view>
-			<view class="right">
-				<h2>正面</h2>
-				<view class="right_section">
-					<view class="right_sections" @tap="charter_upload(1)">
-						<text class="cuIcon-camera"></text>
-					</view>
+			<view class="section" >
+				<view class="left">
+					<image class='lefts' :src='charter' mode="aspectFit" @tap="previewImage(charter)"></image>
 				</view>
-				<h3>{{charterBol}}</h3>
-			</view>
-		</view>
-		<view class="section">
-			<view class="left">
-				<image class='lefts' :src='ID_card' mode="aspectFit" @tap="previewImage(ID_card)"></image>
-			</view>
-			<view class="right">
-				<h2>反面</h2>
-				<view class="right_section">
-					<view class="right_sections" @tap="charter_upload(2)">
-						<text class="cuIcon-camera"></text>
+				<view class="right">
+					<h2>正面</h2>
+					<view class="right_section">
+						<view class="right_sections" @tap="charter_upload(1)">
+							<text class="cuIcon-camera"></text>
+						</view>
 					</view>
+					<h3>{{charterBol}}</h3>
 				</view>
-				<h3>{{iDCardBol}}</h3>
+			</view>
+			<view class="section" >
+				<view class="left">
+					<image class='lefts' :src='ID_card' mode="aspectFit" @tap="previewImage(ID_card)"></image>
+				</view>
+				<view class="right">
+					<h2>反面</h2>
+					<view class="right_section">
+						<view class="right_sections" @tap="charter_upload(2)">
+							<text class="cuIcon-camera"></text>
+						</view>
+					</view>
+					<h3>{{iDCardBol}}</h3>
+				</view>
 			</view>
 		</view>
-		<!-- <view class="footer">
-			<button id='nexts' @tap="next" :disabled="btnBol">{{navigates}}</button>
-		</view> -->
 	</view>
 </template>
 
@@ -46,7 +46,9 @@
 		upCommImg,
 		searchCommImg,
 		idCardCheck,
-		searchUsr
+		searchUsr,
+		updateCo,
+		searchCompany
 	} from '@/axios/index.js'
 	let that;
 	export default {
@@ -57,12 +59,16 @@
 				ID_card: '',
 				ID_cardID: 0,
 				charterBol: '点击拍摄/上传',
-				iDCardBol: '点击拍摄/上传'
+				iDCardBol: '点击拍摄/上传',
+				company:{
+					id:0
+				}
 
 			}
 		},
 		onLoad(options) {
 			that = this;
+			options.id>0?that.company.id=options.id:''
 		},
 		mounted() {
 			let count = 0;
@@ -84,11 +90,13 @@
 					that.navigates = '已实名'
 					that.btnBol = true;
 				}
-			})
+			});
 
 		},
 		methods: {
+			
 			charter_upload: function(type) {
+				
 				let coid = 0;
 				searchUsr({}).then(res => {
 					coid = res.info.list[0].coid; //公司ID
@@ -147,7 +155,7 @@
 							idCardCheck(
 								res, {}).then(res => {
 								let re = JSON.parse(res);
-								if (re.retMsg == '操作成功') {
+								if (re.ret == 0) {
 									that.charter = url;
 									that.charterID = re.info[0]; //上传后的图片ID
 									that.charterBol = '已上传'
@@ -158,7 +166,7 @@
 										icon: 'none'
 									});
 								} else if (re.ret == -1) {
-									title = '正面图片上传识别失败，请查看图片是否正确或者是否清晰';
+									title = '正面图片验证失败,请检查图片是否正确、清晰,检查姓名是否对应';
 								}
 								uni.showToast({
 									title: title,

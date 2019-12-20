@@ -166,7 +166,11 @@
 		
 		
 
-	],
+	    ,{
+            "path" : "pages/attestAtion/updateUser",
+            "style" : {}
+        }
+    ],
 	"globalStyle": {
 		"navigationBarTextStyle": "black",
 		"navigationBarTitleText": "羽迹试试商家版",

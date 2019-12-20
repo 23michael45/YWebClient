@@ -161,6 +161,17 @@ export const searchCompany = (params={}) => { //查询店铺信息
 	})
 }
 
+export const updateUsr = (params={}) => { //更新用户信息
+	return new Promise((resolve, reject) => {
+
+		axios.post(url.updateUsr, {}, {
+			params: params
+		}).then((res) => {
+			resolve(res)
+		})
+
+	})
+}
 export const upCommImg = (filePath,formData) => { //添加客服
 	return new Promise((resolve, reject) => {
 		if(filePath) {

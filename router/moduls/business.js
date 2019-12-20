@@ -95,6 +95,10 @@ const businessPath = [{
 	{
 		path: '/pages/imgmaterial/imgMaterial',
 		name: 'imgMaterial'
+	},
+	{
+		path: '/pages/attestAtion/updateUser',
+		name: 'updateUser'
 	}
 ]
 

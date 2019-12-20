@@ -1,6 +1,9 @@
 <template>
 	<view class="store">
-		<cu-custom class="seat" bgColor="bg-white" :isBack="false"><block slot="backText">返回</block><block slot="content">我的</block></cu-custom>
+		<cu-custom class="seat" bgColor="bg-white" :isBack="false">
+			<block slot="backText">返回</block>
+			<block slot="content">我的</block>
+		</cu-custom>
 		<view class="top">
 			<view class="logo">
 				<view class="icon" @tap="upLogo">
@@ -10,7 +13,7 @@
 				</view>
 				<view class="text">{{companyInfo.name?companyInfo.name:'未设置店铺名'}}
 				</view>
-					<!-- <text class="cuIcon-vip" style="margin-left: 10rpx;font-size:32rpx;color: #F97341"></text> -->
+				<!-- <text class="cuIcon-vip" style="margin-left: 10rpx;font-size:32rpx;color: #F97341"></text> -->
 			</view>
 		</view>
 		<view class="bottom">
@@ -73,83 +76,106 @@
 		mounted() {
 			that = this;
 			that.getCompany()
-			uni.$on('getCompany',that.getCompany)
+			uni.$on('getCompany', that.getCompany)
 		},
 		methods: {
 			toStoreInfo: function() {
-				that.$Router.push({name:'store_info'})
+				that.$Router.push({
+					name: 'store_info'
+				})
 			},
 			toServiceInfo: function() {
 				uni.navigateTo({
 					url: '../service_info/service_info'
 				})
 			},
-				
+
 			toLogin: function() {
 				uni.navigateTo({
 					url: '../login/login'
 				})
 			},
 			toAttestAtion: function() {
-				that.$Router.push({name:'attestAtion'})
+				if(that.companyInfo.charger){
+					that.$Router.push({
+						name: 'attestAtion',
+						params: {
+							id:that.companyInfo.id
+						}
+					})
+				}else{
+					that.$Router.push({
+						name: 'updateUser',
+						params: {
+							id:that.companyInfo.id
+						}
+					})
+				}
+				
 			},
 			upLogo: function() {
 				uni.chooseImage({
-				    count: 1, 
-				    sizeType: ['original', 'compressed'],
-				    sourceType: ['album'],
-				    success: function (res) {
-				        console.log(res.tempFilePaths[0]);
+					count: 1,
+					sizeType: ['original', 'compressed'],
+					sourceType: ['album'],
+					success: function(res) {
+						console.log(res.tempFilePaths[0]);
 						that.imgurl = res.tempFilePaths[0]
 						uni.showModal({
-						    title: '提示',
-						    content: '是否更改店铺LOGO',
-						    success: function (res) {
-						        if (res.confirm) {
+							title: '提示',
+							content: '是否更改店铺LOGO',
+							success: function(res) {
+								if (res.confirm) {
 									that.updateIcon(that.imgurl)
-						        } else if (res.cancel) {
-						            that.imgurl = that.companyInfo.imgurl 
-						        }
-						    }
+								} else if (res.cancel) {
+									that.imgurl = that.companyInfo.imgurl
+								}
+							}
 						});
-				    }
+					}
 				});
 			},
-			toFeedBack:function(){
-				that.$Router.push({name:'feedBack'})
+			toFeedBack: function() {
+				that.$Router.push({
+					name: 'feedBack'
+				})
 			},
 			updateIcon: function(url) {
 				console.log(that.companyInfo.id)
-				updateCo(url,{
+				updateCo(url, {
 					id: that.companyInfo.id
-				}).then((res)=>{
-					if(JSON.parse(res).ret == 0) {
+				}).then((res) => {
+					if (JSON.parse(res).ret == 0) {
 						uni.$emit('getCompany')
 						uni.showToast({
-						    title: '更改成功',
-						    duration: 2000
+							title: '更改成功',
+							duration: 2000,
 						});
 					} else {
 						console.log(res)
-						that.imgurl = that.companyInfo.imgurl 
+						that.imgurl = that.companyInfo.imgurl
 						uni.showToast({
-						    title: '更改失败，请重试',
-						    duration: 2000
+							title: '更改失败，请重试',
+							duration: 2000
 						});
 					}
 				})
 			},
 			getCompany: function() {
-				searchCompany({id:JSON.parse(uni.getStorageSync('uInfo')).coid}).then(r=>{
+				searchCompany({
+					id: JSON.parse(uni.getStorageSync('uInfo')).coid
+				}).then(r => {
 					console.log(r)
-					if(r.ret == 0) {
-					  that.companyInfo = r.info.list[0]
-					  that.imgurl = that.companyInfo.imgurl
+					if (r.ret == 0) {
+						that.companyInfo = r.info.list[0]
+						that.imgurl = that.companyInfo.imgurl
 					}
 				})
 			},
 			toSettings: function() { //设置
-				that.$Router.push({name:'settings'})
+				that.$Router.push({
+					name: 'settings'
+				})
 			}
 		}
 	}

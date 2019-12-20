@@ -64,7 +64,8 @@
 		searchGoodsClass,
 		Activity_Create,
 		delGcImg,
-		upGcImg
+		upGcImg,
+		searchCompany
 	} from '@/axios/index.js'
 	let that;
 	export default {
@@ -125,32 +126,14 @@
 							res.info.list[0].gcImgList.forEach(item => {
 								if (item.type == 3 && item.seqno == 0) {
 									that.activity.splice(0, 1, item);
-								} else if (item.type == 8 && item.seqno == 0) {
+								} else if (item.type == 8 ) {
 									searUserBol = false
 									that.activity.splice(1, 1, item);
 								}
 							});
-							if (searUserBol) {
-								searchUsr({}).then(res => { //查询用户头像
-									if (res.ret == 0) {
-										if (res.info.list[0].imgurl) { //在判断用户头像是否存在
-											//将用户头像作为活动的LOGO上传
-											upGcImg(null, {
-												goodClassId: that.goodClassId,
-												type: 8,
-												seqno: 0,
-												url: res.info.list[0].imgurl,
-												noFile: 1
-											}).then(re => {
-												if (re.ret == 0) {
-													that.activity[1].url = res.info.list[0].imgurl;
-												}
-											})
-										}
-							
-									}
-								});
-							}
+							that.updateUserLogo(searUserBol);
+						}else{
+							that.updateUserLogo(searUserBol);
 						}
 					}
 					uni.hideLoading();
@@ -158,6 +141,30 @@
 			}
 		},
 		methods: {
+			updateUserLogo:function(searUserBol){
+				if (searUserBol) {
+					searchCompany({//查询店铺LOGO
+						id: JSON.parse(uni.getStorageSync('uInfo')).coid
+					}).then(r => {
+						if (r.ret == 0) {
+							if(r.info.list[0].imgurl){
+								//将用户头像作为活动的LOGO上传
+								upGcImg(null, {
+									goodClassId: that.goodClassId,
+									type: 8,
+									seqno: 0,
+									url:r.info.list[0].imgurl,
+									noFile: 1
+								}).then(re => {
+									if (re.ret == 0) {
+										that.activity[1].url = r.info.list[0].imgurl;
+									}
+								})
+							}
+						}
+					})
+				}
+			},
 			//更新活动组件信息
 			// updateModuleInformation:function(e){
 			// 	console.log('调用emit事件:'+e);

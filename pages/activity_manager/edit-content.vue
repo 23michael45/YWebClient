@@ -136,7 +136,7 @@
 				playVideoUrl: '',
 				CustomBar: this.CustomBar,
 				scrollTop: 0,
-				tabCur: 1,
+				tabCur: 0,
 				tabList: ['页面', '造型'],
 				modeArr: [],
 				activityInfo: {},

@@ -21,9 +21,11 @@
 	width: 728upx;
 	height: 400upx;
 	background-color: white;
+	margin: 0 auto;
 	border-radius: 10upx;
 	display: flex;
 	margin-bottom: 20upx;
+	
 }
 
 .left {
