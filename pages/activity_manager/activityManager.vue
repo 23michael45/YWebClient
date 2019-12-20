@@ -92,7 +92,7 @@
 					</scroll-view>
 				</swiper-item>
 				<swiper-item>
-					<scroll-view scroll-y class="" :style="'height:'+ scrollHeight + 'px;'" @scrolltolower='scrollChoiceFour'>
+					<scroll-view scroll-y class="" :style="'height:'+ scrollHeight + 'px; '" @scrolltolower='scrollChoiceFour'>
 						<view class="sectiondd" v-for="(item,index) in activity_four"  :key='item.id' @tap="update(item.id,'activity_four',index)">
 							<view class="mode">
 								<image :src="item.subType==1?'/static/img/01.png':'/static/img/02.png'" mode=""></image>
