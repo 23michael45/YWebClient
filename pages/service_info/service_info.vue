@@ -7,9 +7,8 @@
 					<text class="text-grey">客服微信二维码：</text>
 				</view>
 				<view class="action logo" @tap="changeImg">
-					<image :src="imgLoad"   mode="aspectFill" style="width: 100%;height: 100%;" v-if="imgLoadBol==false"></image>
-					<text  class="cuIcon-add add text-grey" v-if="!imgurl&&imgLoadBol"></text>
-					<image v-else :src="imgurl"  @load="loadImgs" mode="aspectFill" :style="imgLoadBol?imgCss:'display: none'"></image>
+					<text  class="cuIcon-add add text-grey" v-if="!imgurl"></text>
+					<image v-else :src="imgurl"   mode="aspectFill" :style="imgCss"></image>
 				</view>
 			</view>
 			<view class="cu-item">
@@ -46,8 +45,8 @@
 				oldName: '',
 				id: '',
 				isEdit: false,
-				imgLoad:'https://yjkj-0508.oss-cn-shenzhen.aliyuncs.com/FAC:23dd7b8c7ac24fa387707054382332f2.gif',//图片加载时动画
-				imgLoadBol:false,//加载完全时判断
+				// imgLoad:'https://yjkj-0508.oss-cn-shenzhen.aliyuncs.com/FAC:23dd7b8c7ac24fa387707054382332f2.gif',//图片加载时动画
+				// imgLoadBol:false,//加载完全时判断
 				imgCss:'width: 100%;height: 100%;',//图片样式
 			}
 		},
@@ -170,10 +169,11 @@
 						}
 					})
 				})
-			},
-			loadImgs:function(){//客服图片加载优化
-				that.imgLoadBol=true;
 			}
+			// ,
+			// loadImgs:function(){//客服图片加载优化
+			// 	that.imgLoadBol=true;
+			// }
 		}
 	}
 </script>
